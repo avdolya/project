@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Optional, List
 
 
-class UserBase(BaseModel):
+'''class UserBase(BaseModel):
     name: str = Field(default=..., min_length=1, max_length=50, description="Имя, от 1 до 50 символов")
     email: EmailStr = Field(default=..., description="Электронная почта")
     role: str
@@ -18,7 +18,7 @@ class Users(UserBase):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True'''
 
 class PlaceBase(BaseModel):
     name: str = Field(default=..., min_length=1, max_length=50, description="Название, от 1 до 50 символов")
@@ -37,7 +37,7 @@ class Places(PlaceBase):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ReviewBase(BaseModel):
     user_id: int
@@ -55,7 +55,7 @@ class Reviews(ReviewBase):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class VisitedPlaceBase(BaseModel):
     user_id: int
@@ -71,7 +71,7 @@ class VisitedPlace(VisitedPlaceBase):
     visited_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 

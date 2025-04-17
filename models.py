@@ -1,6 +1,11 @@
+from pydantic import BaseModel
+from pydantic_settings import BaseSettings
 from sqlalchemy import Column, Integer, String, Float, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
+from pathlib import Path
+'''BASE_DIR = Path(__file__).parent.parent
+DB_PATH = BASE_DIR / "db. sqlite3"'''
 
 class User(Base):
     __tablename__ = "users"
@@ -38,6 +43,18 @@ class VisitedPlaces(Base):
     user_id = Column(Integer)
     place_id = Column(Integer)
     visited_at = Column(DateTime)
+
+'''class AuthJWT(BaseModel):
+    private_key_path: Path = BASE_DIR / "certs" / "jwt-private.pem"
+    public_key_path: Path = BASE_DIR / "certs" / "jwt-public.pem"
+
+
+class Settings(BaseSettings):
+    api_v1_prefix: str = "/api/v1"
+    db: DbSettings = DbSettings ()
+    auth_jwt: AuthJWT = AuthJWT()
+    # db_echo: bool = True
+settings = Settings()'''
 
 
 
