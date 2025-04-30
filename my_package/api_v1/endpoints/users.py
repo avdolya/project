@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from my_package.core.database import db_helper
 from my_package.crud_package.user import create_user, get_user
-from my_package.api_v1.schemas.user import UserCreate, Users
+from my_package.api_v1.schemas.user import UserCreate, UsersResponse
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
@@ -15,14 +15,14 @@ async def get_db() -> AsyncSession:
 
 
 
-@router.post("/", response_model=Users)
+@router.post("/", response_model=UsersResponse)
 async def create_new_user(
     user_data: UserCreate,
     db: AsyncSession = Depends(get_db)
 ):
     return await create_user(db, user_data.model_dump())
 
-@router.get("/{user_id}", response_model=Users)
+@router.get("/{user_id}", response_model=UsersResponse)
 async def read_user(
     user_id: int,
     db: AsyncSession = Depends(get_db)

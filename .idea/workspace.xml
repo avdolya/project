@@ -4,23 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="add file">
-      <change afterPath="$PROJECT_DIR$/auth/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/places_views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/crud.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/schemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="changes">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.db" beforeDir="false" afterPath="$PROJECT_DIR$/test.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/api_v1/demo_jwt_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/demo_jwt_auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/auth/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/auth/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/core/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/core/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/crud_package/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,18 +58,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "Python.places_views.executor": "Run",
-    "Python.schemas.executor": "Run",
-    "Python.utils.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.places_views.executor&quot;: &quot;Run&quot;,
+    &quot;Python.schemas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my_package" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/my_package/auth" />
+      <recent name="$PROJECT_DIR$/my_package/core" />
+      <recent name="$PROJECT_DIR$/my_package/core/models" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/my_package" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_package/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -102,11 +140,36 @@
       <option name="project" value="LOCAL" />
       <updated>1743968815180</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="changes">
+      <option name="closed" value="true" />
+      <created>1744902586719</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1744902586719</updated>
+    </task>
+    <task id="LOCAL-00004" summary="changes">
+      <option name="closed" value="true" />
+      <created>1744911087690</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744911087691</updated>
+    </task>
+    <task id="LOCAL-00005" summary="changes">
+      <option name="closed" value="true" />
+      <created>1745321138724</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1745321138724</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add file" />
-    <option name="LAST_COMMIT_MESSAGE" value="add file" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
 </project>

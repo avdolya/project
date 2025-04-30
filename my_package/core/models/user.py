@@ -1,17 +1,18 @@
 from .base import Base
+from sqlalchemy import LargeBinary
 from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String, Float, DateTime
+from sqlalchemy import String, Float, DateTime, Boolean
 
 class User(Base):
     __tablename__ = "users"
-    name: Mapped[str] = mapped_column(String(100), index=True)
-    email: Mapped[str] = mapped_column(String, unique=True, nullable=False)
-    password: Mapped[str] = mapped_column(String)
-    role: Mapped[str] = mapped_column(String(30))
+    # вроде как айдишник создается в эндрпоинте
+    #id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
+    email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    hashed_password: Mapped[bytes] = mapped_column(LargeBinary(128), nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-
-
 
 
 
