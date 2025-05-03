@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Verdana, sans-serif;
+    font-weight: 400;
+    background: #FFE8E0;
+    width: 100%;
+}
+a {
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+.search-label {
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.search-form {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+}
+.search-input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid black;
+    border-radius: 4px 0 0 4px;
+    width: 100%;
+}
+.search-button {
+    padding: 8px 16px;
+    background: #cfa191;
+    color: black;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.search-button:hover {
+    background: #a68072;
+}
+.wrapper {
+    width: 100%;
+}
+.container {
+    width: 1350px;
+    margin: 0 auto;
+}
+header {
+    padding:12px 50px 12px 50px;
+}
+span.logo {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 800;
+}
+header nav {
+    float: center;
+    width: 100%;
+}
+header nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+header nav ul li {
+    display: inline-block;
+}
+header nav ul li a {
+    color:black;
+}
+header nav ul li:not(.active):not(.btn) a:hover {
+    border-bottom: 5px solid #cfa191;
+}
+header nav ul li.btn a {
+    background-color: #cfa191;
+    padding: 9px 17px;
+    border-radius: 5px;
+    transition: all 500ms ease;
+}
+header nav ul li.btn a:hover{
+    background: #a68072;
+}
+header nav ul li.active::after {
+    content: '';
+    display: block;
+    width: 68px;
+    height: 5px;
+    background: #cfa191;
+    border-radius: 10px;
+}
+.info {
+    width: 45%;
+    padding: 40px 75px 0;
+}
+.categories {
+    padding: 0 30px 0;
+}
+
+/* Стили для модалки */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #FFE8E0;
+  margin: 10% auto;
+  padding: 25px;
+  border: 2px solid #cfa191;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#authForms {
+  transition: all 0.3s ease;
+}
+
+.notification {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.notification.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.notification.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+input:invalid {
+    border-color: #e53e3e;
+}
+
+input:focus:invalid {
+    box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.2);
+}

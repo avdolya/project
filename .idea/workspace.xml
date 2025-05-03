@@ -4,23 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="new structure, jwt, switched from sqlite to postgres">
+      <change afterPath="$PROJECT_DIR$/frontend/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/demo_jwt_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/demo_jwt_auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/auth/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/auth/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/core/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_package/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.db" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,11 +65,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/static/css" />
       <recent name="$PROJECT_DIR$/my_package" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/my_package/auth" />
       <recent name="$PROJECT_DIR$/my_package/core" />
-      <recent name="$PROJECT_DIR$/my_package/core/models" />
     </key>
   </component>
   <component name="RunManager">
@@ -164,12 +157,21 @@
       <option name="project" value="LOCAL" />
       <updated>1745321138724</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="new structure, jwt, switched from sqlite to postgres">
+      <option name="closed" value="true" />
+      <created>1745990677280</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1745990677280</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add file" />
     <MESSAGE value="changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+    <MESSAGE value="new structure, jwt, switched from sqlite to postgres" />
+    <option name="LAST_COMMIT_MESSAGE" value="new structure, jwt, switched from sqlite to postgres" />
   </component>
 </project>

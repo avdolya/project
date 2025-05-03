@@ -24,18 +24,3 @@ db_helper = DatabaseHelper(
 
 
 
-
-'''SQL_DB_URL = 'sqlite:///./test.db'
-
-engine = create_async_engine(SQL_DB_URL, connect_args={"check_same_thread": False})
-
-session_local = sessionmaker(autoflush=False, autocommit=False, bind=engine)
-
-Base = declarative_base()
-
-def get_db():
-    db = session_local()
-    try:
-        yield db
-    finally:
-        db.close()'''
