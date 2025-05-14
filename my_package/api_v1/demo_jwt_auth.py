@@ -8,6 +8,7 @@ from fastapi import (
         Form,
         HTTPException,
         status,
+        Request,
 )
 import time
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
@@ -17,6 +18,7 @@ from my_package.auth import utils as auth_utils
 from ..core.database import db_helper
 from ..crud_package.user import get_user_by_name
 from ..core.models.user import User
+
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/jwt/login/")
@@ -140,6 +142,10 @@ async def auth_user_check_self_info(
         "email": user.email,
         "logged_in_at": iat,
     }
+
+
+
+
 
 
 

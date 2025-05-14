@@ -6,7 +6,7 @@
     <title>web</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
-<script src="https://unpkg.com/htmx.org@1.9.6/dist/ext/json-enc.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.6/dist/ext/json-enc.js"></script>
 </head>
 <body>
 
@@ -20,8 +20,6 @@
             <button type="submit" class="search-button">Найти</button>
         </form>
     </div>
-
-
     <div class="wrapper">
     <header class="container">
         <nav>
@@ -31,76 +29,145 @@
                 <li><a href="#">Театры</a></li>
                 <li><a href="#">Музеи</a></li>
                 <li><a href="#">Рестораны</a></li>
-                <li><a href="#">Добавить место</a></li>
+                <li><a href="#"  id="addPlaceBtn">Добавить место</a></li>
                 <li><a href="#">Мои места</a></li>
                 <!-- айдишник для js -->
-                <li class="btn"><a href="#" id="authButton">Войти</a></li>
+                <li class="btn"><a href="#"  id="authButton">Войти</a></li>
             </ul>
         </nav>
     </header>
-         <!-- одно комбинированное модальное окно -->
-<div id="authModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
+        <!-- одно комбинированное модальное окно -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
 
-    <!-- контейнер для форм -->
-    <div id="authForms">
-      <!-- форма входа (показывается первой) -->
-      <div id="loginForm">
-        <h2>Вход</h2>
+        <!-- контейнер для форм -->
+            <div id="authForms">
+            <!-- форма входа (показывается первой) -->
+                <div id="loginForm">
+                <h2>Вход</h2>
           <!-- hx-post="/jwt/login/"  Отправляет данные формы на сервер
            методом POST по указанному URL (/jwt/login/). hx-target="#authResponse" - указывает
             куда вставить ответ от сервера (блок для вывода ошибок)
             hx-swap="innerHTML" Определяет как вставлять ответ в целевой элемент (#authResponse).
             innerHTML (по умолчанию) — заменяет содержимое цели.-->
-        <form
-                hx-post="/jwt/login/"
-                hx-target="#authResponse"
-                hx-swap="innerHTML">
-          <div>
-            <label for="username">Имя пользователя</label>
-            <input type="text" id="username" name="username" required>
-          </div>
-          <div>
-            <label for="password">Пароль</label>
-            <input type="password" id="password" name="password" required>
-          </div>
-          <button type="submit" class="search-button">Войти</button>
-        </form>
-        <p>Нет аккаунта? <a href="#" id="showRegister">Зарегистрироваться</a></p>
-      </div>
+                <form
+                        hx-post="/jwt/login/"
+                        hx-target="#authResponse"
+                        hx-swap="innerHTML">
+                    <div>
+                        <label for="username">Имя пользователя</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div>
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="search-button">Войти</button>
+                </form>
+                <p>Нет аккаунта? <a href="#" id="showRegister">Зарегистрироваться</a></p>
+            </div>
 
       <!-- Форма регистрации (скрыта по умолчанию) -->
-      <div id="registerForm" style="display:none">
-        <h2>Регистрация</h2>
-        <form
-
-                hx-post="/users/"
-                hx-target="#authResponse"
-                hx-ext="json-enc"
-        >
-          <div>
-            <label for="regUsername">Имя пользователя</label>
-            <input type="text" id="regUsername" name="username" required>
-          </div>
-          <div>
-            <label for="regEmail">Email</label>
-            <input type="email" id="regEmail" name="email" required>
-          </div>
-          <div>
-            <label for="regPassword">Пароль</label>
-            <input type="password" id="regPassword" name="password" required>
-          </div>
-          <button type="submit" class="search-button">Зарегистрироваться</button>
-        </form>
-        <p>Уже есть аккаунт? <a href="#" id="showLogin">Войти</a></p>
-      </div>
-    </div>
+            <div id="registerForm" style="display:none">
+                <h2>Регистрация</h2>
+                <form
+                        hx-post="/users/"
+                        hx-target="#authResponse"
+                        hx-ext="json-enc">
+                    <div>
+                        <label for="regUsername">Имя пользователя</label>
+                        <input type="text" id="regUsername" name="username" required>
+                    </div>
+                    <div>
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" name="email" required>
+                    </div>
+                    <div>
+                        <label for="regPassword">Пароль</label>
+                        <input type="password" id="regPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="search-button">Зарегистрироваться</button>
+                </form>
+                <p>Уже есть аккаунт? <a href="#" id="showLogin">Войти</a></p>
+            </div>
+        </div>
 
     <!-- Блок для ошибок -->
-    <div id="authResponse" class="notification"></div>
-  </div>
-</div>
+         <div id="authResponse" class="notification"></div>
+        </div>
+    </div>
+
+
+
+    <div id="addPlaceModal" class="modal">
+        <div class="modal-content-places">
+            <span class="close" onclick="hideAddPlaceForm()">&times;</span>
+            <h2>Добавить новое место</h2>
+            <form
+                    id="addPlaceForm"
+                    hx-post="/places/"
+                    hx-target="#addPlaceResult"
+                    hx-swap="none"
+                    hx-encoding="multipart/form-data"
+                    enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="placeName">Название*</label>
+                    <input
+                            type="text"
+                            id="placeName"
+                            name="name" required
+                            oninvalid="this.setCustomValidity('Пожалуйста, введите название места')"
+                            oninput="this.setCustomValidity('')">
+                    <div class="invalid-feedback">Обязательное поле</div>
+                </div>
+                <div class="form-group">
+                    <label for="placeDescription">Описание*</label>
+                    <textarea
+                            id="placeDescription"
+                            name="description"
+                            class="form-textarea"
+                            required
+                            minlength="10"
+                            oninvalid="this.setCustomValidity('Описание должно быть не менее 10 символов')"
+                            oninput="this.setCustomValidity('')"></textarea>
+                    <div class="invalid-feedback">Минимум 10 символов</div>
+                </div>
+                <div class="form-group">
+                    <label for="placeCategory">Категория*</label>
+                    <select
+                            id="placeCategory"
+                            name="type" required>
+                        <option value="">Выберите категорию</option>
+                        <option value="museum">Музей</option>
+                        <option value="theatre">Театр</option>
+                        <option value="food">Ресторан</option>
+                        <option value="walk">Прогулка</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="placeImage">Изображение*</label>
+                    <input
+                            type="file"
+                            id="placeImage"
+                            name="image_data"
+                            accept="image/*"
+                            required
+                            oninvalid="this.setCustomValidity('Загрузите изображение')"
+                            oninput="this.setCustomValidity('')">
+                    <div class="invalid-feedback">Загрузите изображение</div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-button">Сохранить</button>
+                    <button type="button" onclick="window.hideAddPlaceForm()" class="cancel-button">Отмена</button>
+                </div>
+            </form>
+            <div id="addPlaceResult" class="notification"></div>
+        </div>
+    </div>
+
+
     <div class="hero-info">
         <img style="float:right;padding: 40px 75px;" src="/static/img/1.jpeg" alt="Фото" width="650" height="450">
         <div class="info">
@@ -118,108 +185,7 @@
         </div>
     </div>
     </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Получаем элементы интерфейса
-        const authButton = document.getElementById('authButton');
-        const authModal = document.getElementById('authModal');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const closeBtn = document.querySelector('.close');
-        const authResponse = document.getElementById('authResponse');
-        const passwordInput = document.getElementById('regPassword');
 
-        // Функция для показа уведомлений
-        function showNotification(message, isSuccess) {
-            authResponse.innerHTML = `
-                <div class="notification ${isSuccess ? 'success' : 'error'}">
-                    ${message}
-                </div>
-            `;
-            setTimeout(() => authResponse.innerHTML = '', 5000);
-        }
-
-        // Валидация пароля перед отправкой
-        passwordInput?.addEventListener('input', function() {
-            if (this.value.length > 0 && this.value.length < 8) {
-                this.setCustomValidity('Пароль должен содержать минимум 8 символов');
-            } else {
-                this.setCustomValidity('');
-            }
-        });
-
-        // Обработчики открытия/закрытия модального окна
-        authButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            authModal.style.display = 'block';
-            loginForm.style.display = 'block';
-            registerForm.style.display = 'none';
-            authResponse.innerHTML = '';
-        });
-
-        document.getElementById('showRegister')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            loginForm.style.display = 'none';
-            registerForm.style.display = 'block';
-            authResponse.innerHTML = '';
-        });
-
-        document.getElementById('showLogin')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            registerForm.style.display = 'none';
-            loginForm.style.display = 'block';
-            authResponse.innerHTML = '';
-        });
-
-        closeBtn.addEventListener('click', () => authModal.style.display = 'none');
-        window.addEventListener('click', (e) => e.target === authModal && (authModal.style.display = 'none'));
-
-        // Обработчик HTMX-запросов
-        document.body.addEventListener('htmx:afterRequest', function(e) {
-            if (e.detail.successful) {
-                if (e.detail.requestConfig.path === "/jwt/login/") {
-                    authModal.style.display = 'none';
-                    authButton.textContent = 'Профиль';
-                    showNotification('Вход выполнен успешно!', true);
-                }
-
-                if (e.detail.requestConfig.path === "/users/") {
-                    showNotification('Регистрация успешна! Теперь войдите в систему', true);
-                    loginForm.style.display = 'block';
-                    registerForm.style.display = 'none';
-                }
-            } else {
-                // Обработка ошибок валидации
-                try {
-                    const error = JSON.parse(e.detail.xhr.responseText);
-                    let errorMessage = 'Ошибка при обработке запроса';
-
-                    // Специфичные ошибки валидации
-                    if (error.detail) {
-                        if (Array.isArray(error.detail)) {
-                            // Обработка ошибок Pydantic
-                            errorMessage = error.detail.map(err =>
-                                `${err.loc ? err.loc.join('.') + ': ' : ''}${err.msg}`
-                            ).join('<br>');
-                        } else if (typeof error.detail === 'string') {
-                            errorMessage = error.detail;
-                        } else if (error.detail.msg) {
-                            errorMessage = error.detail.msg;
-                        }
-                    }
-
-                    // Специальная обработка ошибки пароля
-                    if (errorMessage.includes('password') || errorMessage.includes('пароль')) {
-                        passwordInput?.focus();
-                    }
-
-                    showNotification(errorMessage, false);
-                } catch {
-                    showNotification('Ошибка соединения с сервером', false);
-                }
-            }
-        });
-    });
-</script>
+<script src="/static/js/main.js"></script>
 </body>
 </html>

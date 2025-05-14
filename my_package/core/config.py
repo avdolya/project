@@ -16,7 +16,7 @@ class AuthJWT(BaseModel):
 
 class Setting(BaseSettings):
     # адрес базы данных
-    db_url: str = "postgresql+asyncpg://user:password@localhost:5432/db"
+    db_url: str = "postgresql+asyncpg://user:password@pg:5432/db"
     # вывод sql запросов в консоль, запросы отображаются в консоль
     db_echo: bool = True
     # создает экземпляр класса AuthJWT

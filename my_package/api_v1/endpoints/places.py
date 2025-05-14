@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Form, UploadFile, File
 from sqlalchemy.ext.asyncio import AsyncSession
 from my_package.api_v1.schemas.place import Places, PlaceCreate
 from my_package.core.database import db_helper
@@ -16,9 +16,19 @@ async def get_db() -> AsyncSession:
 
 @router.post("/", response_model=Places)
 async def create_new_place(
-    place_data: PlaceCreate,
+    name: str = Form(...),
+    description: str = Form(...),
+    type: str = Form(...),
+    image_data: UploadFile = File(...),
     db: AsyncSession = Depends(get_db)
 ):
+    image_bytes = await image_data.read()
+    place_data = PlaceCreate(
+        name=name,
+        description=description,
+        type=type,
+        image_data=image_bytes,
+    )
     return await create_place(db, place_data.model_dump())
 
 @router.get("/{place_id}", response_model=Places)
