@@ -22,7 +22,7 @@ async def get_place(db: AsyncSession, place_id: int) -> Place | None:
 async def get_all_places(
         db: AsyncSession,
         page: int = 0,
-        page_size: int = 10,
+        page_size: int = 2,
         type: str | None = None,
         return_total: bool = False
 ) -> list[Place] | tuple[list[Place], int]:

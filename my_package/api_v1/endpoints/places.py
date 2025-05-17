@@ -1,9 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException, Form, UploadFile, File, Query
+from fastapi import APIRouter, Depends, HTTPException, Request, Form, UploadFile, File, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.encoders import jsonable_encoder
-import base64
-
+from fastapi.templating import Jinja2Templates
 from starlette.responses import Response
 
 from my_package.api_v1.schemas.place import Places, PlaceCreate
@@ -18,10 +17,8 @@ from my_package.crud_package.place import (
 )
 from my_package.core.models.place import Place
 
+templates = Jinja2Templates(directory="frontend/templates")
 
-class PlacesResponse(BaseModel):
-    data: List[Places]
-    meta: dict
 
 
 router = APIRouter(prefix="/places", tags=["Places"])
@@ -66,12 +63,13 @@ async def read_place(
 
 
 
-@router.get("/", response_model=PlacesResponse)
+@router.get("/", response_class=HTMLResponse, name="list_places")
 async def read_places(
-    page: int = Query(1, ge=1),
-    page_size: int = Query(10, ge=1, le=15),
-    type: str | None = None,
-    db: AsyncSession = Depends(get_db)
+        request: Request,
+        type: str = Query(..., description="Тип места (museum, cafe, etc)"),
+        page: int = Query(1, ge=1),
+        page_size: int = Query(2, ge=1, le=15),
+        db: AsyncSession = Depends(get_db)
 ):
     skip = (page - 1) * page_size
     # вызов CRUD-функции get_all_places, которая
@@ -80,28 +78,28 @@ async def read_places(
     # применяет пагинацию
 
     places, total = await get_all_places(db, skip, page_size, type, return_total=True)
-    encoded_places = []
-    for place in places:
-        encoded_places.append({
-            "id": place.id,
-            "name": place.name.encode('utf-8').decode('utf-8'),
-            "description": place.description.encode('utf-8').decode('utf-8'),
-            "type": place.type.encode('utf-8').decode('utf-8'),
-            "average_rating": place.average_rating,
-            "created_at": place.created_at
-        })
+    pagination = {
+        "current_page": page,
+        "total_pages": (total + page_size - 1) // page_size,
+        "has_prev": page > 1,
+        "has_next": (page * page_size) < total
+    }
 
-    return JSONResponse(
-        content={
-            "data": jsonable_encoder(encoded_places),
-            "meta": {
-                "page": page,
-                "page_size": page_size,
-                "total": total,
-                "has_next": (page * page_size) < total
-            }
-        },
-        media_type="application/json; charset=utf-8"
+    template_map = {
+        "walk": "places_in_list/walk.html",
+        "museum": "places_in_list/museums.html",
+        "restaurant": "places_in_list/food.html",
+        "theater": "places_in_list/theaters.html"
+    }
+    template_name = template_map.get(type, "places_in_list/list.html")
+    return templates.TemplateResponse(
+        template_name,
+        {
+            "request": request,
+            "places": places,  # Переименовано в places для согласованности
+            "pagination": pagination,
+            "current_type": type  # Для сохранения фильтра в шаблоне
+        }
     )
 
 @router.get("/{place_id}/image")
