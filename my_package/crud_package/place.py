@@ -1,5 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
+
+from my_package.api_v1.endpoints import places
 from my_package.core.models.place import Place
 from  my_package.core.models.review import Review
 
@@ -19,17 +21,32 @@ async def get_place(db: AsyncSession, place_id: int) -> Place | None:
 
 async def get_all_places(
         db: AsyncSession,
-        skip: int = 0,
-        limit: int = 3,
-        type_filter: str | None = None
-) -> list[Place]:
+        page: int = 0,
+        page_size: int = 10,
+        type: str | None = None,
+        return_total: bool = False
+) -> list[Place] | tuple[list[Place], int]:
+    # запрос для выбора всех записей из таблицы Place,
+    # отсортированных по полю average_rating в порядке
+    # убывания
     query = select(Place).order_by(Place.average_rating.desc())
+    # если задан фильтр
+    if type:
+        query = query.where(Place.type == type)
+    #  Метод execute выполняет запрос, при этом используется метод
+    #  offset(skip) для пропуска первых skip записей
+    #  и limit(limit) для ограничения количества
+    #  возвращаемых записей до limit.
+    result = await db.execute(query.offset(page).limit(page_size))
+    places = list(result.scalars().all())
+    if return_total:
+        total_query = select(func.count(Place.id))
+        if type:
+            total_query = total_query.where(Place.type == type)
+        total = (await db.execute(total_query)).scalar()
+        return places, total
 
-    if type_filter:
-        query = query.where(Place.type == type_filter)
-
-    result = await db.execute(query.offset(skip).limit(limit))
-    return result.scalars().all()
+    return places
 
 
 async def update_place_rating(db: AsyncSession, place_id: int):

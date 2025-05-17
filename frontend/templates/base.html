@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/base.css">
+  <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.6/dist/ext/json-enc.js"></script>
+  <title>
+    {% block title %} {% endblock %}
+
+    {% block extra_head %}{% endblock %}
+  </title>
+</head>
+<body>
+  <div class="search-container">
+    <img src="/static/img/logo.png" alt="logo" width="35" height="35">
+    <!-- метод get нужен эндпоинт сос стороны бэка  -->
+    <form action="/search" method="get" class="search-form">
+      <input type="text" placeholder="Введите запрос..." name="q" class="search-input">
+      <button type="submit" class="search-button">Найти</button>
+    </form>
+  </div>
+  <div class="wrapper">
+    <header class="container">
+      <nav>
+        <ul>
+          <li class="active"><a href="#">Главная</a></li>
+          <li><a href="#">Прогулки</a></li>
+          <li><a href="#">Театры</a></li>
+          <li><a href="#">Музеи</a></li>
+          <li><a href="#">Рестораны</a></li>
+          <li><a href="#"  id="addPlaceBtn">Добавить место</a></li>
+          <li><a href="#">Мои места</a></li>
+          <!-- айдишник для js -->
+          <li class="btn"><a href="#"  id="authButton">Войти</a></li>
+        </ul>
+      </nav>
+    </header>
+    {% block body %} {% endblock %}
+
+    {% block footer %} {% endblock %}
+
+  </div>
+   {% block scripts %} {% endblock %}
+</body>
+</html>

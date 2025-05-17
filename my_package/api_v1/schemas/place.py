@@ -6,7 +6,7 @@ from enum import Enum
 
 class PlaceBase(BaseModel):
     name: str = Field(default=..., min_length=1, max_length=50, description="Название, от 1 до 50 символов")
-    description: str = Field(default=None, max_length=500, description="Дополнительные заметки, не более 500 символов")
+    description: str = Field(default=..., max_length=500, description="Дополнительные заметки, не более 500 символов")
     type: str = Field(..., description="Тип места")
 
 class PlaceCreate(PlaceBase):

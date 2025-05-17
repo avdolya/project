@@ -3,9 +3,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, Request
 import os
-
 from starlette.responses import HTMLResponse
-
 from my_package.core.database import db_helper
 from my_package.core.models.base import Base
 from my_package.api_v1.demo_jwt_auth import router as demo_jwt_auth_router
@@ -47,6 +45,7 @@ async def homepage(request: Request):
         name="index.html",
         context={"request": request}
     )
+
 
 if __name__ == '__main__':
     uvicorn.run(app)

@@ -4,64 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="sign up and login">
-      <change afterPath="$PROJECT_DIR$/frontend/static/js/main.js" afterDir="false" />
+    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="new changes">
+      <change afterPath="$PROJECT_DIR$/frontend/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/css/places.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/templates/places-in-list/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic.ini" beforeDir="false" afterPath="$PROJECT_DIR$/alembic.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/README" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/script.py.mako" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/script.py.mako" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_28_0905-de43d9e27305_init_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_28_0905-de43d9e27305_init_tables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_28_0912-34bdb57b0d31_init_new_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_28_0912-34bdb57b0d31_init_new_tables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_28_0922-388b481751a1_merging_heads.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_28_0922-388b481751a1_merging_heads.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_28_0959-b6d7f721fe83_change_hashed_password_to_bytes.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_28_0959-b6d7f721fe83_change_hashed_password_to_bytes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_29_1953-81b416eae473_rename_name_to_username.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_29_1953-81b416eae473_rename_name_to_username.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/img/1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/img/1.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/demo_jwt_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/demo_jwt_auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/reviews.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/reviews.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/visited_places.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/visited_places.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/place.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/review.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/visited_place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/visited_place.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/auth/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/auth/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/auth/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/auth/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/models/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/models/place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/place.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/models/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/review.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/core/models/visited_place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/visited_place.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/place.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/review.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/visited_place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/visited_place.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,11 +71,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/templates" />
       <recent name="$PROJECT_DIR$/frontend/static/css" />
       <recent name="$PROJECT_DIR$/my_package" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/my_package/auth" />
-      <recent name="$PROJECT_DIR$/my_package/core" />
     </key>
   </component>
   <component name="RunManager">
@@ -240,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746292765437</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="new changes">
+      <option name="closed" value="true" />
+      <created>1747247535138</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747247535138</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -249,6 +212,7 @@
     <MESSAGE value="new structure, jwt, switched from sqlite to postgres" />
     <MESSAGE value="sign up and loginn" />
     <MESSAGE value="sign up and login" />
-    <option name="LAST_COMMIT_MESSAGE" value="sign up and login" />
+    <MESSAGE value="new changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="new changes" />
   </component>
 </project>
