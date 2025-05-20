@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, Form, UploadFile, File, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from fastapi.responses import JSONResponse, HTMLResponse
-from fastapi.encoders import jsonable_encoder
+from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from starlette.responses import Response
 
@@ -50,15 +49,22 @@ async def create_new_place(
 
 
 
-@router.get("/{place_id}", response_model=Places)
+@router.get("/{place_id}", response_class=HTMLResponse)
 async def read_place(
-    place_id: int,
-    db: AsyncSession = Depends(get_db)
+        request: Request,
+        place_id: int,
+        db: AsyncSession = Depends(get_db)
 ):
     db_place = await get_place(db, place_id)
     if not db_place:
         raise HTTPException(status_code=404, detail="Place not found")
-    return db_place
+    return templates.TemplateResponse(
+        "place_card/place_card.html",  # Имя вашего шаблона
+        {
+            "request": request,
+            "place": db_place,
+        }
+    )
 
 
 
@@ -88,10 +94,10 @@ async def read_places(
     template_map = {
         "walk": "places_in_list/walk.html",
         "museum": "places_in_list/museums.html",
-        "restaurant": "places_in_list/food.html",
-        "theater": "places_in_list/theaters.html"
+        "food": "places_in_list/food.html",
+        "theatre": "places_in_list/theatres.html"
     }
-    template_name = template_map.get(type, "places_in_list/list.html")
+    template_name = template_map.get(type, "/base.html")
     return templates.TemplateResponse(
         template_name,
         {

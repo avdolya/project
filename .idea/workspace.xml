@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="new changes">
-      <change afterPath="$PROJECT_DIR$/frontend/base.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/static/css/places.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/templates/places-in-list/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="paginating ready">
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_28_0905-de43d9e27305_init_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_28_0905-de43d9e27305_init_tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_28_0912-34bdb57b0d31_init_new_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_28_0912-34bdb57b0d31_init_new_tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_28_0922-388b481751a1_merging_heads.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_28_0922-388b481751a1_merging_heads.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_28_0959-b6d7f721fe83_change_hashed_password_to_bytes.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_28_0959-b6d7f721fe83_change_hashed_password_to_bytes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic/versions/2025_04_29_1953-81b416eae473_rename_name_to_username.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/2025_04_29_1953-81b416eae473_rename_name_to_username.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +193,31 @@
       <option name="project" value="LOCAL" />
       <updated>1747247535138</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="places table ready">
+      <option name="closed" value="true" />
+      <created>1747488494920</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747488494920</updated>
+    </task>
+    <task id="LOCAL-00012" summary="places table ready">
+      <option name="closed" value="true" />
+      <created>1747488525619</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747488525619</updated>
+    </task>
+    <task id="LOCAL-00013" summary="paginating ready">
+      <option name="closed" value="true" />
+      <created>1747506747963</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747506747963</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -213,6 +227,8 @@
     <MESSAGE value="sign up and loginn" />
     <MESSAGE value="sign up and login" />
     <MESSAGE value="new changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="new changes" />
+    <MESSAGE value="places table ready" />
+    <MESSAGE value="paginating ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="paginating ready" />
   </component>
 </project>

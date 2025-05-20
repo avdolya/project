@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ place.name }}
+{% endblock %}
+
+{% block body %}
+<div>
+    <a href="{{ url_for('list_places') }}?type={{ place.type }}">← К списку мест</a>
+    <h1>{{ place.name }}</h1>
+    <div>
+        <img src="{{ url_for('get_place_image', place_id=place.id) }}"
+             alt="{{ place.name }}">
+        <div>
+            <div>
+                ★ {{ place.average_rating|round(1) }} / 5
+            </div>
+            <div>{{ place.description }}</div>
+            <form id="visitForm" method="POST" action="/" hx-post="/visited-places/"  hx-target="#visit-result">
+                <input type="hidden" name="place_id" value="{{ place.id }}">
+                <button type="submit">Я тут был</button>
+            </form>
+            <div id="visit-result"></div>
+<!-- добавить комментарии чтобы когда нажимала на кнопку открывлаось добавить комментарий  -->
+<!-- проверку был ли пользователь или не был чтобы сразу же форму открыаать или нет   -->
+            {% block scripts %}
+            <script src="/static/js/token.js"></script>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

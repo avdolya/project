@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Мои места{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Мои посещённые места</h1>
+
+    <div>
+        {% for place in places %}
+        <div>
+            <img src="{{ url_for('get_place_image', place_id=place.id) }}"
+                 alt="{{ place.name }}">
+            <h3>{{ place.name }}</h3>
+            <div class="rating">★ {{ place.average_rating|round(1) }}</div>
+             <a href="{{ url_for('read_place', place_id=place.id) }}">Подробнее</a>
+        </div>
+        {% else %}
+        <p>Вы ещё не отметили ни одного места.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+<script src="/static/js/token.js"></script>

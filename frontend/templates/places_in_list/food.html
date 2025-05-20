@@ -17,7 +17,7 @@
                     <div>
                         Рейтинг: {{place.average_rating}} / 5
                     </div>
-                    <a href="{{ url_for('read_place', place_id=place.id) }}" class="details-link">Подробнее</a>
+                    <a href="{{ url_for('read_place', place_id=place.id) }}">Подробнее</a>
                 </div>
             </div>
         {% endfor %}
@@ -36,7 +36,6 @@
                         <span>{{ p }}</span>
                     {% else %}
                         <a href="{{ url_for('list_places') }}?type={{ current_type }}&page={{ p }}">
-                            class="page-link">
                             {{ p }}
                         </a>
                     {% endif %}

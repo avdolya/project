@@ -27,6 +27,36 @@
         } else {
             console.log("Токена нет, оставляем 'Вход'");
         }
+        function isTokenExpired(token) {
+            try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            return payload.exp < Date.now() / 1000;
+            } catch {
+                return true;
+            }
+        }
+
+        // Очистка просроченного токена
+        function cleanExpiredToken() {
+            const token = localStorage.getItem('access_token');
+            if (token && isTokenExpired(token)) {
+                localStorage.removeItem('access_token');
+                console.log('Expired token removed');
+            }
+        }
+
+// Вызываем при загрузке страницы
+cleanExpiredToken();
+
+// Добавляем проверку перед каждым HTMX-запросом
+document.addEventListener('htmx:beforeRequest', function(e) {
+    cleanExpiredToken();
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+        window.location.href = '/login?expired=true';
+        e.preventDefault();
+    }
+});
 
 
 
