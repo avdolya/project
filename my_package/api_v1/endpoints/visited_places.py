@@ -3,6 +3,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.security import OAuth2PasswordBearer
 from starlette.requests import Request
+from starlette.responses import HTMLResponse
 
 from my_package.auth.utils import decode_jwt
 from fastapi.templating import Jinja2Templates
@@ -24,7 +25,7 @@ async def get_db() -> AsyncSession:
     async with db_helper.session_factory() as session:
         yield session
 
-@router.post("/", response_model=VisitedPlace)
+@router.post("/")
 async def add_visited_place(
         place_id: int = Form(...),
         db: AsyncSession = Depends(get_db),
@@ -55,18 +56,38 @@ async def add_visited_place(
         print("Error:", str(e))  # Логирование ошибки
         raise
 
-@router.get("/user/{user_id}", response_model=list[VisitedPlace])
-async def get_visited_places_for_user(
-    user_id: int,
-    db: AsyncSession = Depends(get_db)
+
+@router.get("/my-places", response_class=HTMLResponse)
+async def get_my_visited_places(
+        request: Request,
+        db: AsyncSession = Depends(get_db),
+        token: str = Depends(oauth2_scheme)
 ):
-    visits = await get_user_visited_places(db, user_id)
-    if not visits:
-        raise HTTPException(
-            status_code=404,
-            detail="No visited places found"
+    try:
+        payload = decode_jwt(token)
+        username = payload.get("sub")
+        user = await get_user_by_name(db, username)
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+
+        # Получаем места с JOIN
+        query = text("""
+            SELECT p.id, p.name, p.average_rating, p.image_data 
+            FROM visited_places vp
+            JOIN places p ON vp.place_id = p.id
+            WHERE vp.user_id = :user_id
+        """)
+        result = await db.execute(query, {"user_id": user.id})
+        places = result.mappings().all()
+
+        return templates.TemplateResponse(
+            "/place_list.html",  # Ваш шаблон
+            {
+                "request": request,
+                "places": places,
+                "user": user
+            }
         )
-    return visits
-
-
-
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Internal server error")

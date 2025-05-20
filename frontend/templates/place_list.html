@@ -1,0 +1,7 @@
+{% for place in places %}
+<div class="place-card">
+  <img src="{{ place.image_url }}" alt="{{ place.name }}">
+  <h3>{{ place.name }}</h3>
+  <div>★ {{ place.average_rating }}</div>
+</div>
+{% endfor %}

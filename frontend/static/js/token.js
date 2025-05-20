@@ -6,6 +6,7 @@ document.addEventListener('htmx:configRequest', function(e) {
     if (token) {
         e.detail.headers['Authorization'] = 'Bearer ' + token;
         // Явно указываем тип контента
+
         e.detail.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     } else {
         console.error('No token found in localStorage!');

@@ -36,27 +36,7 @@
             }
         }
 
-        // Очистка просроченного токена
-        function cleanExpiredToken() {
-            const token = localStorage.getItem('access_token');
-            if (token && isTokenExpired(token)) {
-                localStorage.removeItem('access_token');
-                console.log('Expired token removed');
-            }
-        }
 
-// Вызываем при загрузке страницы
-cleanExpiredToken();
-
-// Добавляем проверку перед каждым HTMX-запросом
-document.addEventListener('htmx:beforeRequest', function(e) {
-    cleanExpiredToken();
-    const token = localStorage.getItem('access_token');
-    if (!token) {
-        window.location.href = '/login?expired=true';
-        e.preventDefault();
-    }
-});
 
 
 
