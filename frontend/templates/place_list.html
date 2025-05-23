@@ -3,9 +3,9 @@
 
 {% block body %}
 <div class="container">
-    <h1>Мои посещённые места</h1>
+    <h1 class="place">Мои посещённые места</h1>
     {% for place in places %}
-      <div class="place-card">
+      <div >
         <img src="{{ url_for('get_place_image', place_id=place.id) }}" alt="{{ place.name }}">
         <h3>{{ place.name }}</h3>
         <div>★ {{ place.average_rating }}</div>

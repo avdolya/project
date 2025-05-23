@@ -4,23 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="changes">
+    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="basic funcs ready">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/js/token.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/js/token.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/my_places.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/place_card/place_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/place_card/place_card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/css/places.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/css/places.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/templates/place_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/place_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/reviews.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/reviews.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/visited_places.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/visited_places.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/review.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/auth/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/auth/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/review.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/visited_place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/visited_place.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/places_in_list/food.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/places_in_list/food.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/places_in_list/museums.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/places_in_list/museums.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/places_in_list/theatres.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/places_in_list/theatres.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/places_in_list/walk.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/places_in_list/walk.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -247,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747783546681</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="basic funcs ready">
+      <option name="closed" value="true" />
+      <created>1748004825394</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1748004825394</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -259,6 +259,7 @@
     <MESSAGE value="places table ready" />
     <MESSAGE value="paginating ready" />
     <MESSAGE value="changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+    <MESSAGE value="basic funcs ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic funcs ready" />
   </component>
 </project>

@@ -1,0 +1,56 @@
+.place_rest {
+    font-weight: 700;
+    font-family: Verdana, sans-serif;
+    color: #cb9c8b;
+    text-align: center;  /* Горизонтальное центрирование */
+    margin: 20px 0;
+}
+
+.place-image-container {
+    background: #ededed;
+    padding: 10px 15px 30px 15px; /* Больше места снизу для "подписи" */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: rotate(1deg); /* Легкий наклон */
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.place-image {
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+    border: 1px solid #eee;
+}
+
+.place-link {
+        display: inline-block;
+        text-decoration: none;
+        color: #af8778; /* Коричневый */
+        padding: 7px 9px;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+    }
+
+    .place-link:hover {
+        background-color: #e0d3c9;
+    }
+
+.pagination {
+    text-decoration: none;
+    color: #333; /* Серый вместо синего */
+    margin: 0 5px;
+    padding: 4px 6px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.pagination:hover {
+    background-color: #e0d3c9;
+}
+
+.pagination.page-current {
+    color: #cb9c8b;
+    font-weight: bold;
+}
+
+
