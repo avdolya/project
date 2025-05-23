@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from starlette.responses import Response
-
+from yandexgptlite import YandexGPTLite
 from my_package.api_v1.schemas.place import Places, PlaceCreate
 from my_package.core.database import db_helper
 from pydantic import BaseModel
@@ -15,7 +15,8 @@ from my_package.crud_package.place import (
     update_place_rating
 )
 from my_package.core.models.place import Place
-
+from my_package.crud_package.review import get_reviews_by_place
+account= YandexGPTLite('b1gv7iuv1uhv9c2et4f8', 'y0__xCayL6hBhjB3RMgger-5RJFvRuXWkUHggr9tDEF1ZQcdXPiow')
 templates = Jinja2Templates(directory="frontend/templates")
 
 
@@ -55,7 +56,14 @@ async def read_place(
         place_id: int,
         db: AsyncSession = Depends(get_db)
 ):
+    reviews = await get_reviews_by_place(db, place_id)
     db_place = await get_place(db, place_id)
+    comments = " ".join(review.comment for review in reviews)
+    summary = account.create_completion(
+        comments,
+        '0.6',
+        system_prompt='распиши основные плюсы и минусы, выделив ключевые позиции отзывов, напиши не больше 5 пунктов для плюсов и минусов по отдельности если нет отзывов напиши: отзывов еще нет!'
+    )
     if not db_place:
         raise HTTPException(status_code=404, detail="Place not found")
     return templates.TemplateResponse(
@@ -63,6 +71,8 @@ async def read_place(
         {
             "request": request,
             "place": db_place,
+            "reviews": reviews,
+            "summary": summary,
         }
     )
 
@@ -120,3 +130,25 @@ async def get_place_image(
         content=place.image_data,
         media_type="image/jpeg",
         headers={"Content-Disposition": f"inline; filename={place.id}.jpg"})
+
+
+'''@router.get("/{place_id}/summary")
+async def get_summary(
+        request: Request,
+        place_id: int,
+        db: AsyncSession = Depends(get_db)):
+    reviews = await get_reviews_by_place(db, place_id)
+    comments = " ".join(review.comment for review in reviews)
+    summary = account.create_completion(
+        comments,
+        '0.6',
+        system_prompt='распиши основные плюсы и минусы, выделив ключевые позиции отзывов, напиши не больше 5 пунктов для плюсов и минусов по отдельности если нет отзывов напиши: отзывов еще нет!'
+    )
+    return templates.TemplateResponse(
+        "place_card/place_card.html",  # Имя вашего шаблона
+        {
+            "request": request,
+            "summary": summary,
+
+        }
+    )'''

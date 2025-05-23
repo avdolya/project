@@ -41,7 +41,7 @@ def encode_jwt(
 
 def decode_jwt(
         # может быть и строчкой, и байтами
-        token: str | bytes,
+        token: str,
         public_key: str = settings.auth_jwt.public_key_path.read_text(),
         algorithm: str = settings.auth_jwt.algorithm,
 ):

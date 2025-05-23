@@ -2,12 +2,15 @@ from sqlalchemy import select, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 from  my_package.core.models.review  import Review
 
-async def create_review(db: AsyncSession, review_data: dict) -> Review:
+async def create_review(
+        db: AsyncSession,
+        review_data: dict) -> Review:
     new_review = Review(**review_data)
     db.add(new_review)
     await db.commit()
     await db.refresh(new_review)
     return new_review
+
 
 async def get_reviews_by_place(
     db: AsyncSession,

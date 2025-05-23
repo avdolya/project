@@ -30,11 +30,22 @@
                 <li><a href="/places?type=museum&page=1">Музеи</a></li>
                 <li><a href="/places?type=food&page=1">Рестораны</a></li>
                 <li><a href="#"  id="addPlaceBtn">Добавить место</a></li>
-                <li><a href="/visited-places/my-places">Мои места</a></li>
+               <li>
+  <a href="/visited-places/my-places"
+     hx-get="/visited-places/my-places"
+     hx-target="body"
+     hx-swap="innerHTML"
+     hx-push-url="true">
+    Мои места
+  </a>
+</li>
                 <!-- айдишник для js -->
                 <li class="btn"><a href="#"  id="authButton">Войти</a></li>
             </ul>
         </nav>
+         <div id="content">
+        {% block content %}{% endblock %}
+        </div>
     </header>
         <!-- одно комбинированное модальное окно -->
     <div id="authModal" class="modal">

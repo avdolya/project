@@ -23,3 +23,17 @@ async def get_user_visited_places(
     return result.scalars().all()
 
 
+async def check_visited_place(
+    db: AsyncSession,
+    user_id: int,
+    place_id: int
+) -> bool:
+    query = select(VisitedPlace).where(
+        (VisitedPlace.user_id == user_id) &
+        (VisitedPlace.place_id == place_id)
+    )
+    result = await db.execute(query)
+    return result.scalar_one_or_none() is not None
+
+
+

@@ -8,6 +8,7 @@ from starlette.responses import HTMLResponse
 from my_package.auth.utils import decode_jwt
 from fastapi.templating import Jinja2Templates
 from my_package.core.database import db_helper
+
 from my_package.crud_package.user import get_user_by_name
 from my_package.crud_package.visited_place import (
     create_visited_place,
@@ -31,8 +32,8 @@ async def add_visited_place(
         db: AsyncSession = Depends(get_db),
         token: str = Depends(oauth2_scheme)
 ):
+    print(token)
     try:
-        print("Received token:", token)
         payload = decode_jwt(token)
         username = payload.get("sub")
         user = await get_user_by_name(db, username)
@@ -49,7 +50,7 @@ async def add_visited_place(
                 place_id=place_id,
             )
         await create_visited_place(db, visited_data.dict())
-        return
+        return {"detail": "Место успешно добавлено в посещенные!"}
     except HTTPException as he:
         raise he
     except Exception as e:

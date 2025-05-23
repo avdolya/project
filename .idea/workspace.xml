@@ -4,9 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="paginating ready">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/js/token.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/js/token.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/my_places.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/place_card/place_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/place_card/place_card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/place_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/place_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/reviews.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/reviews.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/visited_places.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/visited_places.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/review.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/auth/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/auth/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/crud_package/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/review.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/crud_package/visited_place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/visited_place.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +70,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/olaavduhina/Desktop/уник/PythonProject&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -217,18 +231,34 @@
       <option name="project" value="LOCAL" />
       <updated>1747506747963</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="changes">
+      <option name="closed" value="true" />
+      <created>1747765273728</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747765273728</updated>
+    </task>
+    <task id="LOCAL-00015" summary="changes">
+      <option name="closed" value="true" />
+      <created>1747783546681</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747783546681</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add file" />
-    <MESSAGE value="changes" />
     <MESSAGE value="new structure, jwt, switched from sqlite to postgres" />
     <MESSAGE value="sign up and loginn" />
     <MESSAGE value="sign up and login" />
     <MESSAGE value="new changes" />
     <MESSAGE value="places table ready" />
     <MESSAGE value="paginating ready" />
-    <option name="LAST_COMMIT_MESSAGE" value="paginating ready" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
 </project>
