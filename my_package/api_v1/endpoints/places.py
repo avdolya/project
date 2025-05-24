@@ -112,9 +112,9 @@ async def read_places(
         template_name,
         {
             "request": request,
-            "places": places,  # Переименовано в places для согласованности
+            "places": places,
             "pagination": pagination,
-            "current_type": type  # Для сохранения фильтра в шаблоне
+            "current_type": type
         }
     )
 
@@ -130,25 +130,3 @@ async def get_place_image(
         content=place.image_data,
         media_type="image/jpeg",
         headers={"Content-Disposition": f"inline; filename={place.id}.jpg"})
-
-
-'''@router.get("/{place_id}/summary")
-async def get_summary(
-        request: Request,
-        place_id: int,
-        db: AsyncSession = Depends(get_db)):
-    reviews = await get_reviews_by_place(db, place_id)
-    comments = " ".join(review.comment for review in reviews)
-    summary = account.create_completion(
-        comments,
-        '0.6',
-        system_prompt='распиши основные плюсы и минусы, выделив ключевые позиции отзывов, напиши не больше 5 пунктов для плюсов и минусов по отдельности если нет отзывов напиши: отзывов еще нет!'
-    )
-    return templates.TemplateResponse(
-        "place_card/place_card.html",  # Имя вашего шаблона
-        {
-            "request": request,
-            "summary": summary,
-
-        }
-    )'''

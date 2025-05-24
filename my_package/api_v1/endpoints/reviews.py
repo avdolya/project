@@ -55,26 +55,6 @@ async def add_review(
     except Exception as e:
         raise
 
-'''@router.get("/place/{place_id}", response_class=HTMLResponse)
-async def get_reviews_for_place(
-        request: Request,
-        place_id: int,
-        db: AsyncSession = Depends(get_db)
-):
-    reviews = await get_reviews_by_place(db, place_id)
-    if not reviews:
-        raise HTTPException(
-            status_code=404,
-            detail="No reviews found for this place"
-        )
-    print(reviews)
-    return templates.TemplateResponse(
-        "place_card/place_card.html",  # Имя вашего шаблона
-        {
-            "request": request,
-            "reviews": reviews,
-        }
-    )'''
 
 '''@router.delete("/{review_id}")
 async def delete_review_endpoint(
