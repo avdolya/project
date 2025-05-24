@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>Мой профиль</h1>
+<div class="profile-container">
+    <div class="profile-info">
+        <div>Имя пользователя: {{ user.username }}</div>
+        <div>Почта: {{ user.email }}</div>
+        <a href="/visited-places/my-places"
+           hx-get="/visited-places/my-places"
+           hx-target="body"
+           hx-swap="innerHTML"
+           hx-push-url="true">
+            Мои места
+        </a>
+    </div>
+</div>
+{% endblock %}

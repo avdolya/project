@@ -37,10 +37,7 @@ async def add_review(
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
         if not await check_visited_place(db, user.id, place_id):
-            raise HTTPException(
-                status_code=403,
-                detail="Вы не можете оставить отзыв, так как не посещали это место"
-            )
+            return "Вы не можете оставить отзыв, так как не посещали это место"
         review_data = ReviewCreate(
             user_id=user.id,
             place_id=place_id,
@@ -49,7 +46,7 @@ async def add_review(
         )
         new_review = await create_review(db, review_data.dict())
         await update_place_rating(db, place_id)
-        return {"message": "Отзыв успешно добавлен"}
+        return "Отзыв успешно добавлен"
     except HTTPException as he:
         raise he
     except Exception as e:

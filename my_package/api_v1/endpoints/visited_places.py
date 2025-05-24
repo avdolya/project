@@ -41,14 +41,14 @@ async def add_visited_place(
             select(1).where((VisitedPlace.user_id == user.id) & (VisitedPlace.place_id == place_id))
         )
         if exists:
-            return {"detail": "Место уже добавлено в посещенные!"}
+            return "Место уже добавлено в посещенные!"
         else:
             visited_data = VisitedPlaceCreate(
                 user_id=user.id,
                 place_id=place_id,
             )
         await create_visited_place(db, visited_data.dict())
-        return {"detail": "Место успешно добавлено в посещенные!"}
+        return "Место успешно добавлено в посещенные!"
     except HTTPException as he:
         raise he
     except Exception as e:

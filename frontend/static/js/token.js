@@ -1,6 +1,5 @@
 document.addEventListener('htmx:configRequest', function(e) {
     const token = localStorage.getItem('access_token');
-
     if (token) {
         e.detail.headers['Authorization'] = 'Bearer ' + token;
 

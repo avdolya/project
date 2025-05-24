@@ -1,216 +1,228 @@
- // ждем загрузку DOM (гарантирует, что JavaScript будет
-    //выполняться только после полной загрузки HTML-структуры
-    //страницы.)
-    document.addEventListener('DOMContentLoaded', function() {
-        const authButton = document.getElementById('authButton'); // кнопка войти
-        const authModal = document.getElementById('authModal'); // модальное окно
-        const loginForm = document.getElementById('loginForm'); // форма входа
-        const registerForm = document.getElementById('registerForm'); // форма реги
-        const closeBtn = document.querySelector('.close'); // кнопка закрытия модалки
-        const authResponse = document.getElementById('authResponse'); // блок уведомлений
-        const passwordInput = document.getElementById('regPassword'); // поле ввода пароля
-        const addPlaceBtn = document.getElementById('addPlaceBtn');
-        const addPlaceForm = document.getElementById('addPlaceForm');
-        const addPlaceModal = document.getElementById('addPlaceModal');
-        const addPlaceResult = document.getElementById('addPlaceResult');
+document.addEventListener('DOMContentLoaded', function() {
+    // ====================== DOM Элементы ======================
+    const elements = {
+        authButton: document.getElementById('authButton'),
+        authModal: document.getElementById('authModal'),
+        loginForm: document.getElementById('loginForm'),
+        registerForm: document.getElementById('registerForm'),
+        closeBtn: document.querySelector('.close'),
+        authResponse: document.getElementById('authResponse'),
+        passwordInput: document.getElementById('regPassword'),
+        addPlaceBtn: document.getElementById('addPlaceBtn'),
+        addPlaceForm: document.getElementById('addPlaceForm'),
+        addPlaceModal: document.getElementById('addPlaceModal'),
+        addPlaceResult: document.getElementById('addPlaceResult'),
+        showRegister: document.getElementById('showRegister'),
+        showLogin: document.getElementById('showLogin')
+    };
 
+    // ====================== Инициализация ======================
+    initAuthState();
+    setupEventListeners();
 
-
-        // Вешаем обработчик
-
-        // получаем элементы интерфейса
-        // Проверяем токен сразу при загрузке страницы
+    // ====================== Основные функции ======================
+    function initAuthState() {
         const token = localStorage.getItem("access_token");
-        if (token) {
-            authButton.textContent = 'Профиль'; // Меняем кнопку
-            console.log("Токен найден, кнопка обновлена");
+        if (token && !isTokenExpired(token)) {
         } else {
-            console.log("Токена нет, оставляем 'Вход'");
+            setUnauthenticatedState();
         }
-        function isTokenExpired(token) {
-            try {
+    }
+
+    function isTokenExpired(token) {
+        if (!token) return true;
+        try {
             const payload = JSON.parse(atob(token.split('.')[1]));
-            return payload.exp < Date.now() / 1000;
-            } catch {
+            if (typeof payload.exp !== 'number') {
+                console.error("Токен не содержит срок действия (exp)");
+                localStorage.removeItem('access_token');
                 return true;
             }
-        }
-
-
-
-
-
-        // функция для показа уведомлений
-        function showNotification(message, isSuccess, targetElement = authResponse) {
-            authResponse.innerHTML = `
-                <div class="notification ${isSuccess ? 'success' : 'error'}">
-                    ${message}
-                </div>
-            `;
-            // автоматическое закрытие через 5 сек
-            setTimeout(() => authResponse.innerHTML = '', 5000);
-        }
-
-
-        function showAddPlaceForm() {
-            addPlaceModal.style.display='block';
-            document.body.style.overflow = 'hidden';
-
-        }
-
-        function hideAddPlaceForm(){
-            addPlaceModal.style.display='none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // валидация пароля перед отправкой
-        passwordInput?.addEventListener('input', function() {
-            if (this.value.length > 0 && this.value.length < 8) {
-                this.setCustomValidity('Пароль должен содержать минимум 8 символов');
-            } else {
-                this.setCustomValidity(''); // при валидном пароле сброс ошибки
+            const isExpired = payload.exp < Math.floor(Date.now() / 1000);
+            if (isExpired) {
+                console.log("Токен просрочен. Удаляем...");
+                localStorage.removeItem('access_token');
             }
-        });
-        // автоматическое добавление токена к HTMX-запросам
-        document.body.addEventListener('htmx:configRequest', function(event) {
-        // получаем jwt токен из локального хранилища браузера
-        const token = localStorage.getItem("access_token");
-        // если токен существует то добавляем заголовок Authorization к запросу
-        if (token) {
-            event.detail.headers['Authorization'] = `Bearer ${token}`;
-        }
-    });
-
-        // обработчики открытия/закрытия модального окна
-        authButton.addEventListener('click', function(e) {
-            e.preventDefault(); // отмена стандартного поведения ссылки
-            authModal.style.display = 'block'; // показываем модальное окно
-            loginForm.style.display = 'block'; // показ формы входа
-            registerForm.style.display = 'none'; // скрываем форму реги
-            authResponse.innerHTML = ''; // очищаем уведомления
-        });
-// переключение на регистрацию
-        document.getElementById('showRegister')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            loginForm.style.display = 'none';
-            registerForm.style.display = 'block';
-            authResponse.innerHTML = '';
-        });
-// переключение на вход
-        document.getElementById('showLogin')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            registerForm.style.display = 'none';
-            loginForm.style.display = 'block';
-            authResponse.innerHTML = '';
-        });
-// закрытие модалки
-        closeBtn.addEventListener('click', () => authModal.style.display = 'none');
-        // закрытие при клике вне модалки
-        window.addEventListener('click', (e) => e.target === authModal && (authModal.style.display = 'none'));
-
-        // обработчик HTMX-запросов
-
-   document.body.addEventListener('htmx:afterRequest', function(e) {
-    // Успешные запросы
-    if (e.detail.successful) {
-        // Обработка успешного входа
-        if (e.detail.requestConfig.path === "/jwt/login/") {
-            // 1. Парсим ответ
-            const response = JSON.parse(e.detail.xhr.responseText);
-
-            // 2. Сохраняем токен
-            localStorage.setItem("access_token", response.access_token);
-
-            // 3. Обновляем интерфейс
-            authModal.style.display = 'none';
-            authButton.textContent = 'Профиль';
-            showNotification('Вход выполнен успешно!', true);
-
-            // 4. Перенаправляем (если нужно)
-            // window.location.href = "/";
-        }
-
-        // Обработка успешной регистрации
-        if (e.detail.requestConfig.path === "/users/") {
-            showNotification('Регистрация успешна! Теперь войдите в систему', true);
-            loginForm.style.display = 'block';
-            registerForm.style.display = 'none';
-        }
-        if (e.detail.requestConfig.path === "/places/") {
-            e.stopImmediatePropagation();
-            const resultDiv = document.getElementById('addPlaceResult');
-            resultDiv.innerHTML = ''; // Очищаем блок
-            if (e.detail.successful) {
-                showNotification('Место успешно добавлено!', true, resultDiv);
-                setTimeout(() => {
-                    addPlaceModal.style.display = 'none';
-                    addPlaceForm.reset();
-                    addPlaceResult.innerHTML = '';
-                }, 4000);
-            } else {
-                const error = JSON.parse(e.detail.xhr.responseText);
-                showNotification(error.detail || "Ошибка добавления", false, resultDiv);
+            return isExpired;
+            } catch (e) {
+                console.error("Ошибка декодирования токена:", e);
+                localStorage.removeItem('access_token');
+                return true;
             }
-
-
-
-        }
-    } else {
-                        // обработка ошибок валидации
-                try {
-                // парсим ответ сервера
-                    const error = JSON.parse(e.detail.xhr.responseText);
-                    let errorMessage = 'Ошибка при обработке запроса';
-
-                    // специфичные ошибки валидации
-                    if (error.detail) {
-                        if (Array.isArray(error.detail)) {
-                            // обработка ошибок Pydantic
-                            errorMessage = error.detail.map(err =>
-                                `${err.loc ? err.loc.join('.') + ': ' : ''}${err.msg}`
-                            ).join('<br>');
-                            // для строковых ошибок
-                        } else if (typeof error.detail === 'string') {
-                            errorMessage = error.detail;
-                        } else if (error.detail.msg) {
-                            errorMessage = error.detail.msg;
-                        }
-                    }
-
-                    // специальная обработка ошибки пароля
-                    if (errorMessage.includes('password') || errorMessage.includes('пароль')) {
-                        passwordInput?.focus();
-                    }
-
-                    showNotification(errorMessage, false);
-                } catch {
-             // обработка ошибок парсинга
-                    showNotification('Ошибка соединения с сервером', false);
-                }
     }
-    });
-    addPlaceBtn?.addEventListener('click', function(e) {
+
+
+
+    function setUnauthenticatedState() {
+        elements.authButton.onclick = (e) => {
+            e.preventDefault();
+            showModal(elements.authModal);
+            elements.loginForm.style.display = 'block';
+            elements.registerForm.style.display = 'none';
+        };
+    }
+
+    // ====================== Вспомогательные функции ======================
+    function showNotification(message, isSuccess, targetElement = elements.authResponse) {
+        targetElement.innerHTML = `
+            <div class="notification ${isSuccess ? 'success' : 'error'}">
+                ${message}
+            </div>
+        `;
+        setTimeout(() => targetElement.innerHTML = '', 5000);
+    }
+
+    function showModal(modalElement) {
+        modalElement.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideModal(modalElement) {
+        modalElement.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // ====================== Обработчики событий ======================
+    function setupEventListeners() {
+        // Авторизация
+        elements.authButton.addEventListener('click', handleAuthButtonClick);
+        elements.closeBtn.addEventListener('click', () => hideModal(elements.authModal));
+        elements.showRegister?.addEventListener('click', handleShowRegister);
+        elements.showLogin?.addEventListener('click', handleShowLogin);
+
+        // Добавление места
+        elements.addPlaceBtn?.addEventListener('click', handleAddPlaceClick);
+
+        // Валидация пароля
+        elements.passwordInput?.addEventListener('input', validatePassword);
+
+        // Закрытие модалок по клику вне
+        window.addEventListener('click', handleOutsideClick);
+
+        // HTMX обработчики
+        document.addEventListener('htmx:configRequest', function(e) {
+        const token = localStorage.getItem('access_token');
+        if (token) {
+            e.detail.headers['Authorization'] = 'Bearer ' + token;
+
+            e.detail.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        } else {
+            console.error('No token found in localStorage!');
+        }
+        });
+
+        document.body.addEventListener('htmx:afterRequest', handleHtmxResponse);
+    }
+
+    function handleAuthButtonClick(e) {
+        e.preventDefault();
+        showModal(elements.authModal);
+        elements.loginForm.style.display = 'block';
+        elements.registerForm.style.display = 'none';
+        elements.authResponse.innerHTML = '';
+    }
+
+    function handleShowRegister(e) {
+        e.preventDefault();
+        elements.loginForm.style.display = 'none';
+        elements.registerForm.style.display = 'block';
+        elements.authResponse.innerHTML = '';
+    }
+
+    function handleShowLogin(e) {
+        e.preventDefault();
+        elements.registerForm.style.display = 'none';
+        elements.loginForm.style.display = 'block';
+        elements.authResponse.innerHTML = '';
+    }
+
+    function handleAddPlaceClick(e) {
         e.preventDefault();
         const token = localStorage.getItem("access_token");
+        token ? showModal(elements.addPlaceModal) : (
+            showModal(elements.authModal),
+            showNotification('Для добавления места войдите в систему', false)
+        );
+    }
 
-        if (token) {
-            showAddPlaceForm();
+    function validatePassword() {
+        if (this.value.length > 0 && this.value.length < 8) {
+            this.setCustomValidity('Пароль должен содержать минимум 8 символов');
         } else {
-            authModal.style.display = 'block';
-            showNotification('Для добавления места войдите в систему', false);
+            this.setCustomValidity('');
         }
-    });
-    window.hideAddPlaceForm = hideAddPlaceForm;
-    window.showAddPlaceForm = showAddPlaceForm;
-    // Закрытие по клику вне модалки
-    window.addEventListener('click', (e) => {
-        if (e.target === authModal) {
-            authModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        if (e.target === addPlaceModal) {
-            hideAddPlaceForm();
-        }
+    }
 
-    });
+    function handleOutsideClick(e) {
+        if (e.target === elements.authModal) hideModal(elements.authModal);
+        if (e.target === elements.addPlaceModal) hideModal(elements.addPlaceModal);
+    }
+
+
+
+    function handleHtmxResponse(e) {
+        if (e.detail.successful) {
+            handleSuccessfulResponse(e);
+        } else {
+            handleErrorResponse(e);
+        }
+    }
+
+    function handleSuccessfulResponse(e) {
+        const path = e.detail.requestConfig.path;
+
+        if (path === "/jwt/login/") {
+            const response = JSON.parse(e.detail.xhr.responseText);
+            localStorage.setItem("access_token", response.access_token);
+            hideModal(elements.authModal);
+            setAuthenticatedState();
+            showNotification('Вход выполнен успешно!', true);
+        }
+        else if (path === "/users/") {
+            showNotification('Регистрация успешна! Теперь войдите в систему', true);
+            elements.loginForm.style.display = 'block';
+            elements.registerForm.style.display = 'none';
+        }
+        else if (path === "/places/") {
+            e.stopImmediatePropagation();
+            elements.addPlaceResult.innerHTML = '';
+            showNotification('Место успешно добавлено!', true, elements.addPlaceResult);
+            setTimeout(() => {
+                hideModal(elements.addPlaceModal);
+                elements.addPlaceForm.reset();
+                elements.addPlaceResult.innerHTML = '';
+            }, 4000);
+        }
+    }
+
+    function handleErrorResponse(e) {
+        try {
+            const error = JSON.parse(e.detail.xhr.responseText);
+            let errorMessage = 'Ошибка при обработке запроса';
+
+            if (error.detail) {
+                if (Array.isArray(error.detail)) {
+                    errorMessage = error.detail.map(err =>
+                        `${err.loc ? err.loc.join('.') + ': ' : ''}${err.msg}`
+                    ).join('<br>');
+                } else if (typeof error.detail === 'string') {
+                    errorMessage = error.detail;
+                } else if (error.detail.msg) {
+                    errorMessage = error.detail.msg;
+                }
+            }
+
+            if (errorMessage.includes('password') || errorMessage.includes('пароль')) {
+                elements.passwordInput?.focus();
+            }
+
+            showNotification(errorMessage, false);
+        } catch {
+            showNotification('Ошибка соединения с сервером', false);
+        }
+    }
+
+    // Экспорт функций для глобального доступа
+    window.hideAddPlaceForm = () => hideModal(elements.addPlaceModal);
+    window.showAddPlaceForm = () => showModal(elements.addPlaceModal);
 });
