@@ -1,14 +1,15 @@
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from datetime import datetime
 
+
 class UserBase(BaseModel):
-    username: str = Field(..., min_length=1, max_length=50, description="Имя, от 1 до 50 символов")
-    email: EmailStr = Field(..., description="Электронная почта")
+    username: str = Field(..., min_length=1, max_length=50)
+    email: EmailStr
 
 
-# валидация данных при регистрации
 class UserCreate(UserBase):
-    password: str = Field(..., min_length=8, max_length=12, description="Пароль от 8 до 12 символов")
+    password: str = Field(..., min_length=8, max_length=12)
+
 
 # данные которые видит клиент
 class UsersResponse(UserBase):
@@ -18,8 +19,6 @@ class UsersResponse(UserBase):
 
     class Config:
         orm_mode = True
-        # более современный вариант???
-        #model_config = ConfigDict(from_attributes=True)
 
 
 # внутреннее представление пользователя

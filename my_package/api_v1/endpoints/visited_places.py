@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Form
-from sqlalchemy import text
+from sqlalchemy import select,text
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.security import OAuth2PasswordBearer
 from starlette.requests import Request
@@ -8,17 +8,16 @@ from starlette.responses import HTMLResponse
 from my_package.auth.utils import decode_jwt
 from fastapi.templating import Jinja2Templates
 from my_package.core.database import db_helper
+from my_package.core.models import VisitedPlace, Place
 
 from my_package.crud_package.user import get_user_by_name
 from my_package.crud_package.visited_place import (
     create_visited_place,
-    get_user_visited_places
 )
-templates = Jinja2Templates(directory="frontend/templates")
 from my_package.api_v1.schemas.visited_place import (
     VisitedPlaceCreate,
-    VisitedPlace,
 )
+templates = Jinja2Templates(directory="frontend/templates")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/jwt/login/")
 
 router = APIRouter(prefix="/visited-places", tags=["Visited Places"])
@@ -32,17 +31,16 @@ async def add_visited_place(
         db: AsyncSession = Depends(get_db),
         token: str = Depends(oauth2_scheme)
 ):
-    print(token)
     try:
         payload = decode_jwt(token)
         username = payload.get("sub")
         user = await get_user_by_name(db, username)
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
-        exists = await db.execute(
-            text("SELECT 1 FROM visited_places WHERE user_id=:uid AND place_id=:pid"),
-            {"uid": user.id, "pid": place_id})
-        if exists.scalar():
+        exists = await db.scalar(
+            select(1).where((VisitedPlace.user_id == user.id) & (VisitedPlace.place_id == place_id))
+        )
+        if exists:
             return {"detail": "Место уже добавлено в посещенные!"}
         else:
             visited_data = VisitedPlaceCreate(
@@ -70,16 +68,14 @@ async def get_my_visited_places(
         user = await get_user_by_name(db, username)
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
-
-        # Получаем места с JOIN
-        query = text("""
-            SELECT p.id, p.name, p.average_rating, p.image_data 
-            FROM visited_places vp
-            JOIN places p ON vp.place_id = p.id
-            WHERE vp.user_id = :user_id
-        """)
+        query = (
+            select(Place)
+            .select_from(VisitedPlace)
+            .join(Place, VisitedPlace.place_id == Place.id)
+            .where(VisitedPlace.user_id == user.id)
+        )
         result = await db.execute(query, {"user_id": user.id})
-        places = result.mappings().all()
+        places = result.scalars().all()
 
         return templates.TemplateResponse(
             "/place_list.html",  # Ваш шаблон

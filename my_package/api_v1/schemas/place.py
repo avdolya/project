@@ -5,17 +5,17 @@ from enum import Enum
 
 
 class PlaceBase(BaseModel):
-    name: str = Field(default=..., min_length=1, max_length=50, description="Название, от 1 до 50 символов")
-    description: str = Field(default=..., max_length=500, description="Дополнительные заметки, не более 500 символов")
-    type: str = Field(..., description="Тип места")
+    name: str = Field(default=..., min_length=1, max_length=50)
+    description: str = Field(default=..., max_length=500)
+    type: str
 
 class PlaceCreate(PlaceBase):
-    image_data: bytes = Field(None, description="Бинарные данные изображения")
+    image_data: bytes = Field(None)
 
 
 class Places(PlaceBase):
     id: int
-    average_rating: Optional[float] = None
+    average_rating: Optional[float] = None #???? мб 0.0
     created_at: datetime
 
     class Config:

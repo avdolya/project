@@ -1,8 +1,7 @@
 from .base import Base
 from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String, Float, DateTime,Integer, JSON, LargeBinary
-from enum import Enum as PyEnum
+from sqlalchemy import String, Float, DateTime, LargeBinary
 
 
 class Place(Base):

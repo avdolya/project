@@ -1,7 +1,5 @@
 from jwt.exceptions import InvalidTokenError
 from sqlalchemy.ext.asyncio import AsyncSession
-
-from my_package.core.database import db_helper
 from fastapi import (
         APIRouter,
         Depends,
@@ -11,13 +9,12 @@ from fastapi import (
         Request,
 )
 import time
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
 from .schemas.user import UserSchema
 from my_package.auth import utils as auth_utils
 from ..core.database import db_helper
 from ..crud_package.user import get_user_by_name
-from ..core.models.user import User
 
 
 
@@ -129,7 +126,7 @@ async def auth_user_issue_jwt(
         token_type="Bearer" #тип который по умолчанию используем для токена
     )
 
-# пользователь будет получать информацтю о себе по токену
+# пользователь будет получать информацию о себе по токену
 @router.get("/users/me/")
 async def auth_user_check_self_info(
         # пользователя получаем при помощи функциии get_current_active_auth_user
