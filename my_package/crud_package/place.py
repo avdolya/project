@@ -61,4 +61,18 @@ async def update_place_rating(db: AsyncSession, place_id: int):
         await db.refresh(place)
     return place
 
+async def delete_place(db: AsyncSession, place_id: int) -> bool:
+    result = await db.execute(
+        select(Place)
+        .where(Place.id == place_id)
+    )
+    place = result.scalar_one_or_none()
+
+    if not place:
+        return False
+
+    await db.delete(place)
+    await db.commit()
+    return True
+
 

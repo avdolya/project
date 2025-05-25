@@ -23,6 +23,7 @@
             <input type="hidden" name="place_id" value="{{ place.id }}">
             <button type="submit">Я тут был</button>
         </form>
+         <div>{{ message }}</div>
         <div id="visit-result"></div>
     </div>
 </div>
@@ -43,6 +44,9 @@
                 max="5"
                 required>
         </div>
+        {% if message %}
+            <div class="alert alert-{{ message_type }}">{{ message }}</div>
+        {% endif %}
         <div>
             <label>Комментарий:</label>
             <textarea

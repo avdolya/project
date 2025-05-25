@@ -30,7 +30,7 @@
                 <li><a href="/places?type=food&page=1">Рестораны</a></li>
                 <li><a href="#"  id="addPlaceBtn">Добавить место</a></li>
                <li>
-  <a href="/visited-places/my-places"
+  <a id="myPlacesButton" href="/visited-places/my-places"
      hx-get="/visited-places/my-places"
      hx-target="body"
      hx-swap="innerHTML"
@@ -41,7 +41,7 @@
                 <!-- айдишник для js -->
                 <li class="btn"><a href="#"  id="authButton">Войти</a></li>
                 <li  class = "btn">
-                    <a href="/users/profile"
+                    <a id="profileButton" href="/users/profile"
                     hx-get="/users/profile"
                     hx-target="body"
                     hx-swap="innerHTML"

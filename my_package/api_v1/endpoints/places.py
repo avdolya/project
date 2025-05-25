@@ -12,7 +12,7 @@ from my_package.crud_package.place import (
     create_place,
     get_place,
     get_all_places,
-    update_place_rating
+    update_place_rating, delete_place
 )
 from my_package.core.models.place import Place
 from my_package.crud_package.review import get_reviews_by_place
@@ -58,12 +58,15 @@ async def read_place(
 ):
     reviews = await get_reviews_by_place(db, place_id)
     db_place = await get_place(db, place_id)
-    comments = " ".join(review.comment for review in reviews)
-    summary = account.create_completion(
-        comments,
-        '0.6',
-        system_prompt='распиши основные плюсы и минусы, выделив ключевые позиции отзывов, напиши не больше 5 пунктов для плюсов и минусов по отдельности если нет отзывов напиши: отзывов еще нет!'
-    )
+    if not reviews:
+        summary = "Отзывов еще нет!"
+    else:
+        comments = " ".join(review.comment for review in reviews)
+        summary = account.create_completion(
+            comments,
+            '0.6',
+            system_prompt='распиши основные плюсы и минусы, выделив ключевые позиции отзывов, напиши не больше 5 пунктов для плюсов и минусов по отдельности если нет отзывов напиши: отзывов еще нет!'
+        )
     if not db_place:
         raise HTTPException(status_code=404, detail="Place not found")
     return templates.TemplateResponse(
@@ -112,9 +115,9 @@ async def read_places(
         template_name,
         {
             "request": request,
-            "places": places,
+            "places": places,  # Переименовано в places для согласованности
             "pagination": pagination,
-            "current_type": type
+            "current_type": type  # Для сохранения фильтра в шаблоне
         }
     )
 
@@ -130,3 +133,20 @@ async def get_place_image(
         content=place.image_data,
         media_type="image/jpeg",
         headers={"Content-Disposition": f"inline; filename={place.id}.jpg"})
+
+
+@router.delete("/{place_id}")
+async def delete_place_endpoint(
+    place_id: int,
+    db: AsyncSession = Depends(get_db)
+):
+    success = await delete_place(db, place_id)
+    if not success:
+        raise HTTPException(
+            status_code=404,
+            detail="Place not found or you don't have permissions"
+        )
+
+    return {"status": "success"}
+
+

@@ -23,6 +23,7 @@ async def get_db() -> AsyncSession:
 
 @router.post("/{place_id}/reviews")
 async def add_review(
+        request: Request,
         place_id: int,
         rating: float = Form(...),
         comment: str = Form(...),

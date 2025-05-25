@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
         addPlaceModal: document.getElementById('addPlaceModal'),
         addPlaceResult: document.getElementById('addPlaceResult'),
         showRegister: document.getElementById('showRegister'),
-        showLogin: document.getElementById('showLogin')
+        showLogin: document.getElementById('showLogin'),
+        profileButton: document.getElementById('profileButton'),
+        myPlacesButton: document.getElementById('myPlacesButton')
     };
 
     // ====================== Инициализация ======================
@@ -98,7 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Закрытие модалок по клику вне
         window.addEventListener('click', handleOutsideClick);
-
+        elements.profileButton?.addEventListener('click', handleProfileClick);
+        elements.myPlacesButton?.addEventListener('click', handleMyPlacesClick);
         // HTMX обработчики
         document.addEventListener('htmx:configRequest', function(e) {
         const token = localStorage.getItem('access_token');
@@ -145,6 +148,29 @@ document.addEventListener('DOMContentLoaded', function() {
         );
     }
 
+    function handleProfileClick(e) {
+        e.preventDefault();
+        const token = localStorage.getItem("access_token");
+
+        if (!token) {
+            showModal(elements.authModal);
+            showNotification('Для просмотра профиля войдите в систему', false);
+            return;
+        }
+
+    }
+
+    function handleMyPlacesClick(e) {
+        e.preventDefault();
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+            showModal(elements.authModal);
+            showNotification('Для просмотра профиля войдите в систему', false);
+            return;
+        }
+
+    }
+
     function validatePassword() {
         if (this.value.length > 0 && this.value.length < 8) {
             this.setCustomValidity('Пароль должен содержать минимум 8 символов');
@@ -175,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const response = JSON.parse(e.detail.xhr.responseText);
             localStorage.setItem("access_token", response.access_token);
             hideModal(elements.authModal);
-            setAuthenticatedState();
             showNotification('Вход выполнен успешно!', true);
         }
         else if (path === "/users/") {
