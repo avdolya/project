@@ -1,3 +1,4 @@
+import httpx
 from fastapi import APIRouter, Depends, HTTPException, Request, Form, UploadFile, File, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.responses import HTMLResponse
@@ -7,12 +8,18 @@ from yandexgptlite import YandexGPTLite
 from my_package.api_v1.schemas.place import Places, PlaceCreate
 from my_package.core.database import db_helper
 from pydantic import BaseModel
+import re
 from typing import List, Optional
+import logging
+logger = logging.getLogger(__name__)
+
+TELEGRAM_TOKEN = "7581155092:AAH4jSiC23scRq7WNTVjeFvigz6gi2z8srU"
+YOUR_SERVER_URL = "https://b49a-46-226-163-218.ngrok-free.app "
 from my_package.crud_package.place import (
     create_place,
     get_place,
     get_all_places,
-    update_place_rating, delete_place
+    update_place_rating, delete_place, download_telegram_file
 )
 from my_package.core.models.place import Place
 from my_package.crud_package.review import get_reviews_by_place
@@ -25,6 +32,53 @@ router = APIRouter(prefix="/places", tags=["Places"])
 async def get_db() -> AsyncSession:
     async with db_helper.session_factory() as session:
         yield session
+
+
+@router.get("/set-webhook")
+async def set_webhook():
+    async with httpx.AsyncClient() as client:
+        url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/setWebhook?url={YOUR_SERVER_URL}/places/telegram-webhook"
+        response = await client.get(url)
+    return response.json()
+
+@router.post("/telegram-webhook")
+async def telegram_webhook(
+        request: Request,
+        db: AsyncSession = Depends(get_db)
+):
+    data = await request.json()
+
+
+    message = data.get("message", {})
+    text = message.get("caption", "")
+
+
+    # Парсинг текста
+    name_match = re.search(r"Название:\s*(.*)", text)
+    desc_match = re.search(r"Описание:\s*(.*)", text)
+    type_match = re.search(r"Тип:\s*(.*)", text)
+    print(name_match)
+    print(desc_match)
+    print(type_match)
+
+
+    file_id = message["photo"][-1]["file_id"]
+    image_data = await download_telegram_file(file_id)
+    mapping_dict = {
+        'музей': 'museum',
+        'ресторан': 'food',
+        'прогулка': 'walk',
+        'театр': 'theatre',
+    }
+    type = mapping_dict.get(type_match.group(1).strip().lower())
+    place_data = PlaceCreate(
+        name = name_match.group(1).strip(),
+        description = desc_match.group(1).strip(),
+        type = type,
+        image_data = image_data  # bytes или None
+    )
+
+    '''return await create_place(db, place_data.model_dump())'''
 
 
 
@@ -44,7 +98,8 @@ async def create_new_place(
         type=type,
         image_data=image_bytes,
     )
-    return await create_place(db, place_data.model_dump())
+    new_place = await create_place(db, place_data.dict())
+
 
 
 
@@ -148,5 +203,4 @@ async def delete_place_endpoint(
         )
 
     return {"status": "success"}
-
 

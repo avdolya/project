@@ -1,7 +1,7 @@
+import httpx
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
-
-from my_package.api_v1.endpoints import places
+TELEGRAM_TOKEN = "7581155092:AAH4jSiC23scRq7WNTVjeFvigz6gi2z8srU"
 from my_package.core.models.place import Place
 from  my_package.core.models.review import Review
 
@@ -74,5 +74,21 @@ async def delete_place(db: AsyncSession, place_id: int) -> bool:
     await db.delete(place)
     await db.commit()
     return True
+
+
+async def download_telegram_file(file_id: str) -> bytes:
+    async with httpx.AsyncClient() as client:
+
+        file_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getFile?file_id={file_id}"
+        file_path = (await client.get(file_url)).json()["result"]["file_path"]
+
+
+        download_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_path}"
+        response = await client.get(download_url)
+        return response.content
+
+
+
+
 
 

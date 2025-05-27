@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{ place.name }}
+{% if place %}{{ place.name }}{% else %}Место{% endif %}
 {% endblock %}
 
 {% block body %}
@@ -23,7 +23,7 @@
             <input type="hidden" name="place_id" value="{{ place.id }}">
             <button type="submit">Я тут был</button>
         </form>
-         <div>{{ message }}</div>
+
         <div id="visit-result"></div>
     </div>
 </div>
@@ -44,8 +44,8 @@
                 max="5"
                 required>
         </div>
-        {% if message %}
-            <div class="alert alert-{{ message_type }}">{{ message }}</div>
+        {% if message_reviews %}
+            <div class="alert alert-{{ status }}">{{ message_reviews }}</div>
         {% endif %}
         <div>
             <label>Комментарий:</label>
