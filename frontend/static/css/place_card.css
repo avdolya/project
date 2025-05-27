@@ -1,0 +1,64 @@
+body {
+    background-color: #FFE8E0;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-weight: 700;
+    font-family: Verdana, sans-serif;
+    color: #cb9c8b;
+    text-align: center;  /* Горизонтальное центрирование */
+    margin: 20px 0;
+}
+
+.simply-text {
+    display: flex;
+    width: 100%;
+    font-weight: 200;
+    font-family: Verdana, sans-serif;
+    text-align: center;  /* Горизонтальное центрирование */
+    margin: 20px 0;
+}
+
+
+
+.place-image-container {
+    background: #ededed;
+    padding: 10px 15px 30px 15px; /* Больше места снизу для "подписи" */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.place-image {
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+    border: 1px solid #eee;
+}
+
+
+.minimal-btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.minimal-btn {
+    display: inline-flex; /* Изменено с flex на inline-flex */
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-family: Verdana, sans-serif;
+    color: #4d3c36;
+    padding: 7px 12px;
+    border-radius: 6px;
+    background: transparent;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #4d3c36; /* Для лучшей видимости */
+    white-space: nowrap; /* Чтобы текст не переносился */
+}

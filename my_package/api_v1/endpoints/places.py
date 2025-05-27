@@ -78,7 +78,7 @@ async def telegram_webhook(
         image_data = image_data  # bytes или None
     )
 
-    '''return await create_place(db, place_data.model_dump())'''
+    await create_place(db, place_data.dict())
 
 
 

@@ -128,9 +128,14 @@ header nav ul li.active::after {
         background-color: #e0d3c9;
     }
 
+.pagination_container{
+    display: flex;
+    justify-content: center;
+}
+
 .pagination {
     text-decoration: none;
-    color: #333; /* Серый вместо синего */
+    color: #333;
     margin: 0 5px;
     padding: 4px 6px;
     border: 1px solid #ddd;
