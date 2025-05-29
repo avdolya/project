@@ -28,8 +28,11 @@ body {
     background: #ededed;
     padding: 10px 15px 30px 15px; /* Больше места снизу для "подписи" */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: fit-content;
+    width: 700px;
     margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .place-image {
@@ -61,4 +64,10 @@ body {
     transition: all 0.3s ease;
     border: 1px solid #4d3c36; /* Для лучшей видимости */
     white-space: nowrap; /* Чтобы текст не переносился */
+}
+
+.visit_btn {
+    display: flex;
+    justify-content: center;
+    width: 150px;
 }

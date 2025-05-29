@@ -4,29 +4,35 @@
 {% if place %}{{ place.name }}{% else %}Место{% endif %}
 {% endblock %}
 
+{% block extra_head %}
+  <link rel="stylesheet" href="/static/css/place_card.css">
+{% endblock %}
+
 {% block body %}
-<a href="{{ url_for('list_places') }}?type={{ place.type }}">← К списку мест</a>
-<h1>{{ place.name }}</h1>
-<div>
-    <img src="{{ url_for('get_place_image', place_id=place.id) }}"
+<div class="minimal-btn-container">
+    <a class="minimal-btn" href="{{ url_for('list_places') }}?type={{ place.type }}">← К списку мест</a>
+</div>
+<h1  class="text">{{ place.name }}</h1>
+<div class="place-image-container">
+    <img class="place-image" src="{{ url_for('get_place_image', place_id=place.id) }}"
          alt="{{ place.name }}">
     <div>
         <div>
             ★ {{ place.average_rating|round(1) }} / 5
         </div>
-        <div>{{ place.description }}</div>
+        <div class="simply-text">{{ place.description }}</div>
         <form
                 id="visitForm"
                 method="POST" action="/"
                 hx-post="/visited-places/"
                 hx-target="#visit-result">
             <input type="hidden" name="place_id" value="{{ place.id }}">
-            <button type="submit">Я тут был</button>
+            <button type="submit" class = 'visit_btn'>Я тут был</button>
         </form>
 
         <div id="visit-result"></div>
     </div>
-</div>
+
 <div>
     <h3>Оставить отзыв</h3>
     <form
@@ -47,10 +53,11 @@
         <div>
             <label>Комментарий:</label>
             <textarea
-                name="comment"
-                maxlength="500"
-                required
-                ></textarea>
+                    class="minimal-textarea"
+                    name="comment"
+                    maxlength="500"
+                    required
+            ></textarea>
         </div>
         <button type="submit" class="btn-submit">Отправить</button>
     </form>
@@ -58,7 +65,7 @@
 
 <div>
     <h3>Краткая сводка</h3>
-    <div>{{summary}}</div>
+    <div class="simply-text">{{summary}}</div>
 
 </div>
 <div>
@@ -70,7 +77,7 @@
     </div>
     {% endfor %}
 </div>
-
+</div>
     {% block scripts %}
     <script src="/static/js/token.js"></script>
     {% endblock %}

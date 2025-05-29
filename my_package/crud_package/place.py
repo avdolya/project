@@ -87,6 +87,17 @@ async def download_telegram_file(file_id: str) -> bytes:
         response = await client.get(download_url)
         return response.content
 
+def load_secrets():
+    secrets = {}
+    try:
+        with open('my_package/certs/.secret', 'r') as f:
+            for line in f:
+                if '=' in line:
+                    key, value = line.strip().split('=', 1)
+                    secrets[key] = value
+    except FileNotFoundError:
+        pass
+    return secrets
 
 
 

@@ -13,17 +13,25 @@ from typing import List, Optional
 import logging
 logger = logging.getLogger(__name__)
 
-TELEGRAM_TOKEN = "7581155092:AAH4jSiC23scRq7WNTVjeFvigz6gi2z8srU"
-YOUR_SERVER_URL = "https://b49a-46-226-163-218.ngrok-free.app "
+
 from my_package.crud_package.place import (
     create_place,
     get_place,
     get_all_places,
-    update_place_rating, delete_place, download_telegram_file
+    update_place_rating, delete_place, download_telegram_file, load_secrets
 )
 from my_package.core.models.place import Place
 from my_package.crud_package.review import get_reviews_by_place
-account= YandexGPTLite('b1gv7iuv1uhv9c2et4f8', 'y0__xCayL6hBhjB3RMgger-5RJFvRuXWkUHggr9tDEF1ZQcdXPiow')
+
+
+
+secrets = load_secrets()
+
+TELEGRAM_TOKEN = secrets.get('TELEGRAM_TOKEN')
+YOUR_SERVER_URL = secrets.get('YOUR_SERVER_URL')
+YANDEX_FOLDER_ID = secrets.get('YANDEX_FOLDER_ID')
+YANDEX_API_KEY = secrets.get('YANDEX_API_KEY')
+account= YandexGPTLite(YANDEX_FOLDER_ID, YANDEX_API_KEY)
 templates = Jinja2Templates(directory="frontend/templates")
 
 
@@ -46,39 +54,43 @@ async def telegram_webhook(
         request: Request,
         db: AsyncSession = Depends(get_db)
 ):
-    data = await request.json()
+    try:
+        data = await request.json()
+        if "message" not in data:
+            return {"status": "ignored", "reason": "not a message"}
+        message = data.get("message", {})
+        text = message.get("caption", "")
 
 
-    message = data.get("message", {})
-    text = message.get("caption", "")
+        # Парсинг текста
+        name_match = re.search(r"Название:\s*(.*)", text)
+        desc_match = re.search(r"Описание:\s*(.*)", text)
+        type_match = re.search(r"Тип:\s*(.*)", text)
+        print(name_match)
+        print(desc_match)
+        print(type_match)
+        print(message)
+        print(text)
 
 
-    # Парсинг текста
-    name_match = re.search(r"Название:\s*(.*)", text)
-    desc_match = re.search(r"Описание:\s*(.*)", text)
-    type_match = re.search(r"Тип:\s*(.*)", text)
-    print(name_match)
-    print(desc_match)
-    print(type_match)
-
-
-    file_id = message["photo"][-1]["file_id"]
-    image_data = await download_telegram_file(file_id)
-    mapping_dict = {
-        'музей': 'museum',
-        'ресторан': 'food',
-        'прогулка': 'walk',
-        'театр': 'theatre',
-    }
-    type = mapping_dict.get(type_match.group(1).strip().lower())
-    place_data = PlaceCreate(
-        name = name_match.group(1).strip(),
-        description = desc_match.group(1).strip(),
-        type = type,
-        image_data = image_data  # bytes или None
-    )
-
-    await create_place(db, place_data.dict())
+        file_id = message["photo"][-1]["file_id"]
+        image_data = await download_telegram_file(file_id)
+        mapping_dict = {
+            'музей': 'museum',
+            'ресторан': 'food',
+            'прогулка': 'walk',
+            'театр': 'theatre',
+        }
+        type = mapping_dict.get(type_match.group(1).strip().lower())
+        place_data = PlaceCreate(
+            name = name_match.group(1).strip(),
+            description = desc_match.group(1).strip(),
+            type = type,
+            image_data = image_data  # bytes или None
+        )
+        await create_place(db, place_data.dict())
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 
