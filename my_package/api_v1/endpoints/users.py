@@ -44,7 +44,7 @@ async def read_user(
             raise HTTPException(status_code=404, detail="User not found")
 
         return templates.TemplateResponse(
-            "/profile.html",  # Ваш шаблон
+            "/profile.html",
             {
                 "request": request,
                 "user": user

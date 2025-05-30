@@ -137,7 +137,7 @@ async def read_place(
     if not db_place:
         raise HTTPException(status_code=404, detail="Place not found")
     return templates.TemplateResponse(
-        "place_card/place_card.html",  # Имя вашего шаблона
+        "place_card/place_card.html",
         {
             "request": request,
             "place": db_place,
@@ -160,7 +160,7 @@ async def read_places(
     skip = (page - 1) * page_size
     # вызов CRUD-функции get_all_places, которая
     # фильтрует места по type (если передан).
-    # Сортирует по рейтингу (order_by(Place.average_rating.desc())).
+    # сортирует по рейтингу (order_by(Place.average_rating.desc())).
     # применяет пагинацию
 
     places, total = await get_all_places(db, skip, page_size, type, return_total=True)
@@ -182,9 +182,9 @@ async def read_places(
         template_name,
         {
             "request": request,
-            "places": places,  # Переименовано в places для согласованности
+            "places": places,
             "pagination": pagination,
-            "current_type": type  # Для сохранения фильтра в шаблоне
+            "current_type": type
         }
     )
 

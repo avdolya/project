@@ -9,7 +9,7 @@ body {
     font-weight: 700;
     font-family: Verdana, sans-serif;
     color: #cb9c8b;
-    text-align: center;  /* Горизонтальное центрирование */
+    text-align: center;
     margin: 20px 0;
 }
 
@@ -18,7 +18,7 @@ body {
     width: 100%;
     font-weight: 200;
     font-family: Verdana, sans-serif;
-    text-align: center;  /* Горизонтальное центрирование */
+    text-align: center;
     margin: 20px 0;
 }
 
@@ -26,7 +26,7 @@ body {
 
 .place-image-container {
     background: #ededed;
-    padding: 10px 15px 30px 15px; /* Больше места снизу для "подписи" */
+    padding: 10px 15px 30px 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 700px;
     margin: 20px auto;
@@ -50,7 +50,7 @@ body {
 }
 
 .minimal-btn {
-    display: inline-flex; /* Изменено с flex на inline-flex */
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     font-size: 16px;
@@ -62,8 +62,8 @@ body {
     letter-spacing: 1px;
     text-decoration: none;
     transition: all 0.3s ease;
-    border: 1px solid #4d3c36; /* Для лучшей видимости */
-    white-space: nowrap; /* Чтобы текст не переносился */
+    border: 1px solid #4d3c36;
+    white-space: nowrap;
 }
 
 .visit_btn {

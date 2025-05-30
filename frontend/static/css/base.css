@@ -95,15 +95,14 @@ header nav ul li.active::after {
     font-weight: 700;
     font-family: Verdana, sans-serif;
     color: #cb9c8b;
-    text-align: center;  /* Горизонтальное центрирование */
+    text-align: center;
     margin: 20px 0;
 }
 
 .place-image-container {
     background: #ededed;
-    padding: 10px 15px 30px 15px; /* Больше места снизу для "подписи" */
+    padding: 10px 15px 30px 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: rotate(1deg); /* Легкий наклон */
     width: fit-content;
     margin: 20px auto;
 }
@@ -118,7 +117,7 @@ header nav ul li.active::after {
 .place-link {
         display: inline-block;
         text-decoration: none;
-        color: #af8778; /* Коричневый */
+        color: #af8778;
         padding: 7px 9px;
         border-radius: 8px;
         transition: background-color 0.3s;

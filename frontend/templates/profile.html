@@ -13,19 +13,13 @@
            hx-push-url="true">
             Мои места
         </a>
-        <button>Выйти</button>
+        <button id = logout-btn>Выйти</button>
     </div>
 </div>
 
 <script>
 document.getElementById('logout-btn').addEventListener('click', function() {
-    // Удаляем токен из localStorage (если используется клиентское хранение)
     localStorage.removeItem('access_token');
-
-    // Можно также удалить cookie (если токен хранится там)
-    document.cookie = 'access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-
-    // Перенаправляем на главную страницу
     window.location.href = '/';
 });
 </script>

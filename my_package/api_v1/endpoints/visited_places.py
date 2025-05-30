@@ -52,7 +52,7 @@ async def add_visited_place(
     except HTTPException as he:
         raise he
     except Exception as e:
-        print("Error:", str(e))  # Логирование ошибки
+        print("Error:", str(e))
         raise
 
 
@@ -78,7 +78,7 @@ async def get_my_visited_places(
         places = result.scalars().all()
 
         return templates.TemplateResponse(
-            "/place_list.html",  # Ваш шаблон
+            "/place_list.html",
             {
                 "request": request,
                 "places": places,

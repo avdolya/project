@@ -20,7 +20,8 @@ async def get_reviews_by_place(
         select(Review)
         .where(Review.place_id == place_id)
     )
-    return result.scalars().all()
+    reviews = list(result.scalars().all())
+    return reviews
 
 async def delete_review(
     db: AsyncSession,

@@ -6,7 +6,7 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse
 from starlette.templating import Jinja2Templates
 
-from my_package.api_v1.schemas.review import ReviewCreate
+from my_package.api_v1.schemas.review import ReviewCreate, Reviews
 from my_package.auth.utils import decode_jwt
 from my_package.core.database import db_helper
 from my_package.crud_package.place import update_place_rating
@@ -53,7 +53,7 @@ async def add_review(
         raise
 
 
-'''@router.delete("/{review_id}")
+@router.delete("/{review_id}")
 async def delete_review_endpoint(
     review_id: int,
     db: AsyncSession = Depends(get_db)
@@ -61,4 +61,18 @@ async def delete_review_endpoint(
     success = await delete_review(db, review_id)
     if not success:
         raise HTTPException(status_code=404, detail="Review not found")
-    return {"message": "Review deleted"}'''
+    return {"message": "Review deleted"}
+
+
+
+
+@router.get("/places/{place_id}", response_model=list[Reviews])
+async def get_my_visited_places(
+        place_id: int,
+        db: AsyncSession = Depends(get_db)
+):
+    reviews = await get_reviews_by_place(db, place_id)
+    if not reviews:
+        raise HTTPException(status_code=404, detail="Review not found")
+    return reviews
+
