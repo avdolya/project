@@ -11,7 +11,8 @@ from my_package.api_v1.endpoints import (
     places,
     users,
     reviews,
-    visited_places
+    visited_places,
+    assistant,
 )
 
 app = FastAPI()
@@ -32,6 +33,7 @@ app.include_router(places.router)
 app.include_router(reviews.router)
 app.include_router(visited_places.router)
 app.include_router(demo_jwt_auth_router)
+app.include_router(assistant.router)
 
 @app.on_event("startup")
 async def startup():

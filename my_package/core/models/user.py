@@ -11,6 +11,7 @@ class User(Base):
     hashed_password: Mapped[bytes] = mapped_column(LargeBinary(128), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    role: Mapped[str] = mapped_column(String(20), default="user", nullable=False)
 
 
 

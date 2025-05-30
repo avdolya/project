@@ -1,10 +1,11 @@
+import secrets
+
 import httpx
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
-TELEGRAM_TOKEN = "7581155092:AAH4jSiC23scRq7WNTVjeFvigz6gi2z8srU"
+
 from my_package.core.models.place import Place
 from  my_package.core.models.review import Review
-
 
 async def create_place(db: AsyncSession, place_data: dict) -> Place:
     new_place = Place(**place_data)
@@ -76,16 +77,7 @@ async def delete_place(db: AsyncSession, place_id: int) -> bool:
     return True
 
 
-async def download_telegram_file(file_id: str) -> bytes:
-    async with httpx.AsyncClient() as client:
 
-        file_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getFile?file_id={file_id}"
-        file_path = (await client.get(file_url)).json()["result"]["file_path"]
-
-
-        download_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_path}"
-        response = await client.get(download_url)
-        return response.content
 
 def load_secrets():
     secrets = {}
@@ -98,6 +90,37 @@ def load_secrets():
     except FileNotFoundError:
         pass
     return secrets
+
+
+async def download_telegram_file(file_id: str) -> bytes:
+    async with httpx.AsyncClient() as client:
+        secrets = load_secrets()
+        TELEGRAM_TOKEN = secrets.get('TELEGRAM_TOKEN')
+        file_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getFile?file_id={file_id}"
+        file_path = (await client.get(file_url)).json()["result"]["file_path"]
+
+
+        download_url = f"https://api.telegram.org/file/bot{TELEGRAM_TOKEN}/{file_path}"
+        response = await client.get(download_url)
+        return response.content
+
+
+async def get_all_places_for_assistant(
+        db: AsyncSession,
+        type: str,
+        min_rating: float = 0.0,
+) -> list[Place]:
+    limit: int = 20
+    query = (
+        select(Place)
+        .where(Place.type == type)
+        .where(Place.average_rating >= min_rating)
+        .order_by(Place.average_rating.desc())
+        .limit(limit)
+    )
+
+    result = await db.execute(query)
+    return list(result.scalars().all())
 
 
 

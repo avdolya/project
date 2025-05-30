@@ -250,3 +250,149 @@ input:focus:invalid {
     font-size: 0.875em;
     color: #dc3545;
 }
+
+.chat-container {
+    width: 45%;
+    margin: 40px 40px 40px 40px;
+    padding: 40px 40px 40px 40px;
+    background-color: #cfa191;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.assistant-nav {
+    margin-top: 20px;
+}
+
+.assistant-nav ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.assistant-nav li {
+    display: flex;
+}
+
+.category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #8c6b4f, #6d4c35);
+    color: white;
+    border-radius: 12px;
+    padding: 20px 15px;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #a17f62, #7d5a40);
+}
+
+.category-btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.category-btn:hover:before {
+    left: 100%;
+}
+
+.category-btn .icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.category-btn:hover .icon {
+    transform: scale(1.2);
+}
+
+.category-btn .label {
+    font-size: 1.1em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Анимация при нажатии */
+.category-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Специфичные цвета для категорий */
+.btn-walk {
+  background: linear-gradient(135deg, #6a9e7f, #558066);
+}
+.btn-walk:hover {
+  background: linear-gradient(135deg, #7cad8d, #639075);
+}
+
+.btn-theatre {
+  background: linear-gradient(135deg, #8e7dc7, #7260a9);
+}
+.btn-theatre:hover {
+  background: linear-gradient(135deg, #9c8bd4, #8170b8);
+}
+
+.btn-museum {
+  background: linear-gradient(135deg, #d9b683, #c19d6a);
+}
+.btn-museum:hover {
+  background: linear-gradient(135deg, #e7c594, #d0ab79);
+}
+
+.btn-food {
+  background: linear-gradient(135deg, #d88a8a, #c27474);
+}
+.btn-food:hover {
+  background: linear-gradient(135deg, #e69a9a, #d08484);
+}
+
+
+.cta-btn {
+  background: linear-gradient(135deg, #2f302a, #000000); /* Приглушенный градиент */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 28px;
+  margin-top: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(106, 90, 205, 0.25);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(106, 90, 205, 0.3);
+}
+
+.cta-btn:active {
+  transform: translateY(0);
+}

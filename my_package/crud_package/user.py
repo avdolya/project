@@ -52,3 +52,19 @@ async def get_user_by_name(db: AsyncSession, username: str):
     return result.scalar_one_or_none()
 
 
+async def get_current_admin(db: AsyncSession, user_id: id) -> User:
+    result = await db.execute(
+        select(User).where(User.id == user_id)
+    )
+    user = result.scalars().first()
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="Пользователь не найден"
+        )
+    if user.role != "admin":
+        raise HTTPException(
+            status_code=403,
+            detail="Требуются права администратора"
+        )
+    return user

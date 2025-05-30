@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="add css">
+    <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="add roles fix errors">
+      <change afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/assistant.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_package/api_v1/demo_jwt_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/demo_jwt_auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_package/api_v1/schemas/place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/schemas/place.py" afterDir="false" />
@@ -14,6 +17,7 @@
       <change beforePath="$PROJECT_DIR$/my_package/core/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/core/models/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_package/crud_package/place.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/place.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_package/crud_package/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_package/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,7 +340,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748595161419</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="add roles fix errors">
+      <option name="closed" value="true" />
+      <created>1748620097212</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1748620097212</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -357,6 +369,7 @@
     <MESSAGE value="add tg messages" />
     <MESSAGE value="fixed tg func" />
     <MESSAGE value="add css" />
-    <option name="LAST_COMMIT_MESSAGE" value="add css" />
+    <MESSAGE value="add roles fix errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="add roles fix errors" />
   </component>
 </project>

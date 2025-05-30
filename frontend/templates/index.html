@@ -203,6 +203,70 @@
         </div>
     </div>
     </div>
+<div class="chat-container">
+    <h1>Туристический ассистент</h1>
+    <div class="chat-messages">
+        <div class="message_assistant">
+            Привет! Я ваш туристический ассистент. Выберите категорию:
+         <nav class="assistant-nav">
+            <ul>
+                <li>
+                    <button class="category-btn btn-walk"
+                            hx-get="/assistant/recommend?type=walk"
+                            hx-target="#assistant-recommendation">
+                        <span class="icon">🚶‍♂️</span>
+                        <span class="label">Прогулки</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="category-btn btn-theatre"
+                        hx-get="/assistant/recommend?type=theatre"
+                        hx-target="#assistant-recommendation">
+                    <span class="icon">🎭</span>
+                    <span class="label">Театры</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="category-btn btn-museum"
+                        hx-get="/assistant/recommend?type=museum"
+                        hx-target="#assistant-recommendation">
+                    <span class="icon">🏛️</span>
+                    <span class="label">Музеи</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="category-btn btn-food"
+                        hx-get="/assistant/recommend?type=food"
+                        hx-target="#assistant-recommendation">
+                    <span class="icon">🍽️</span>
+                    <span class="label">Рестораны</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+            <div id="assistant-recommendation" class="recommendation-container"></div>
+        </div>
+    </div>
+    <div class="types">
+        {% for type in types %}
+        <div class="type-container">
+            <div class="htmx-indicator">Ищем лучшее место...</div>
+            <button class="type-btn"
+                    hx-get="/assistant/recommend?type={{ type.value }}"
+                    hx-target="#recommendation-{{ type.value }}"
+                    hx-swap="outerHTML"
+                    hx-indicator=".htmx-indicator">
+                    {{ type.label }}
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="recommendations">
+        {% for type in types %}
+        <div id="recommendation-{{ type.value }}" class="recommendation" style="display: none;"></div>
+        {% endfor %}
+    </div>
+</div>
 
 <script src="/static/js/main.js"></script>
 </body>

@@ -15,7 +15,7 @@ class PlaceCreate(PlaceBase):
 
 class Places(PlaceBase):
     id: int
-    average_rating: Optional[float] = None #???? мб 0.0
+    average_rating: Optional[float] = 0.0
     created_at: datetime
 
     class Config:

@@ -116,6 +116,7 @@ async def auth_user_issue_jwt(
         "sub": user.username,
         "username": user.username,
         "email": user.email,
+        "role": user.role,
         "iat": int(time.time()),
 
     }
@@ -137,6 +138,7 @@ async def auth_user_check_self_info(
     return {
         "username": user.username,
         "email": user.email,
+        "role": user.role,
         "logged_in_at": iat,
     }
 
