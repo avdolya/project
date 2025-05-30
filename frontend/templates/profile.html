@@ -1,19 +1,29 @@
 {% extends "base.html" %}
 
-{% block body %}
+{% block title %}
 <h1>Мой профиль</h1>
+{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="/static/css/profile.css">
+{% endblock %}
+
+
+{% block body %}
 <div class="profile-container">
     <div>
-        <div>Имя пользователя: {{ user.username }}</div>
-        <div>Почта: {{ user.email }}</div>
-        <a href="/visited-places/my-places"
-           hx-get="/visited-places/my-places"
-           hx-target="body"
-           hx-swap="innerHTML"
-           hx-push-url="true">
-            Мои места
-        </a>
-        <button id = logout-btn>Выйти</button>
+        <div class="simply-text">Имя пользователя: {{ user.username }}</div>
+        <div class="simply-text">Почта: {{ user.email }}</div>
+        <div class="buttons-vertical">
+            <a href="/visited-places/my-places"
+               hx-get="/visited-places/my-places"
+               hx-target="body"
+               hx-swap="innerHTML"
+               hx-push-url="true">
+               Мои места
+            </a>
+            <button class="minimal-btn" id = logout-btn>Выйти</button>
+        </div>
     </div>
 </div>
 

@@ -27,7 +27,7 @@
                 hx-post="/visited-places/"
                 hx-target="#visit-result">
             <input type="hidden" name="place_id" value="{{ place.id }}">
-            <button type="submit" class = 'visit_btn'>Я тут был</button>
+            <div style = "display: flex; justify-content: center;"><button type="submit" class = 'visit_btn'>Я тут был</button></div>
         </form>
 
         <div id="visit-result"></div>

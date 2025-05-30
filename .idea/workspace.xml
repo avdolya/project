@@ -6,15 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7e24f4c7-37b2-4e0c-91d5-a4fa1094a0e9" name="Changes" comment="fixed tg func">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/css/place_card.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/css/place_card.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/css/places.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/css/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/place_card/place_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/place_card/place_card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/place_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/place_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/places.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/reviews.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/reviews.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/api_v1/endpoints/visited_places.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/api_v1/endpoints/visited_places.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/review.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_package/crud_package/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_package/crud_package/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +318,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748539063394</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fixed tg func">
+      <option name="closed" value="true" />
+      <created>1748579775592</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1748579775593</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

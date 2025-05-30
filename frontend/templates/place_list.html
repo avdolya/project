@@ -1,16 +1,14 @@
-
 {% extends "base.html" %}
 
 {% block body %}
-<div class="container">
-    <h1 class="place">Мои посещённые места</h1>
+<div>
+    <h1 class="place_rest">Мои посещённые места</h1>
     {% for place in places %}
-      <div >
-        <img src="{{ url_for('get_place_image', place_id=place.id) }}" alt="{{ place.name }}">
+      <div class="place-image-container">
+        <img class="place-image" src="{{ url_for('get_place_image', place_id=place.id) }}" alt="{{ place.name }}">
         <h3>{{ place.name }}</h3>
         <div>★ {{ place.average_rating }}</div>
     </div>
     {% endfor %}
 </div>
 {% endblock %}
-}
