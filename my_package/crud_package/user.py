@@ -25,7 +25,7 @@ async def create_user(db: AsyncSession, user_data: dict) -> User:
                 detail="Пользователь с таким email уже существует"
             )
     try:
-        hashed_pwd = hash_password(user_data.pop('password'))  # Пароль хешируется
+        hashed_pwd = hash_password(user_data.pop('password'))  # пароль хешируется
         db_user = User(**user_data, hashed_password=hashed_pwd)
         db.add(db_user)
         await db.commit()

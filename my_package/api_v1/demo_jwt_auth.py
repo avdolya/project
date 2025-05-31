@@ -6,7 +6,7 @@ from fastapi import (
         Form,
         HTTPException,
         status,
-        Request,
+        Response,
 )
 import time
 from fastapi.security import OAuth2PasswordBearer
@@ -107,9 +107,12 @@ user: UserSchema = Depends(get_current_auth_user),
 @router.post("/login/", response_model=TokenInfo)
 async def auth_user_issue_jwt(
         #user: UserSchema = Depends(validate_auth_user) # зависит от функции которая проверяет, прошел ли пользователь аутентификацию
+        #response: Response,
         username: str = Form(...),
         password: str = Form(...),
         db: AsyncSession = Depends(get_db),
+
+
 ):
     user = await validate_auth_user(username, password, db)
     jwt_payload = {

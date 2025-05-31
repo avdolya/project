@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 hideModal(elements.addPlaceModal);
                 elements.addPlaceForm.reset();
                 elements.addPlaceResult.innerHTML = '';
-            }, 4000);
+            }, 1000);
         }
     }
 
