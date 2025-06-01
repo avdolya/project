@@ -25,14 +25,13 @@ body {
 
 
 .place-image-container {
-    background: #ededed;
-    padding: 10px 15px 30px 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 700px;
-    margin: 20px auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .place-image {
